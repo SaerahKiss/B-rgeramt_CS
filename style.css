@@ -23,7 +23,7 @@ body {
     left: 0;
     overflow: auto;
     flex-flow: column nowrap;
-    scroll-snap-type: y mandatory;
+    /* scroll-snap-type: y mandatory; */
 }
 
 button {
