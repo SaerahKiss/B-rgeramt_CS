@@ -1,6 +1,6 @@
 console.log(`hello`);
 
-const h1resultJS = document.getElementsByClassName(`resultH1`);
+const h2resultJS = document.getElementsByClassName(`resultH2`);
 
 //dann die buttons zugänglich machen
 const buttonJA = document.getElementsByClassName(`ja`);
@@ -9,6 +9,42 @@ const buttonJA = document.getElementsByClassName(`ja`);
 
 const buttonNEIN = document.getElementsByClassName(`nein`);
 const rootJS = document.getElementsByClassName(`root`);
+
+const buttonSkipIntroJS = document.getElementsByClassName(`Intro`);
+const buttonSkipConclusionJS = document.getElementsByClassName(`Conclusion`);
+
+//positionen für die buttons
+const positionTopIntro = visualViewport.height * 4;
+const positionTopConclusion = visualViewport.height * 9;
+
+rootJS[0].addEventListener("scroll", (event) => {
+  let distanceFromTop = rootJS[0].scrollTop;
+  changeButtons(distanceFromTop);
+  //return distanceFromTop;
+  //am besten mit case switch
+
+  //if distanceFromTop < positionTopIntro {classList.add visibility zu skip button;
+
+  //if distanceFromTop > positionTopIntro {classList.remove visibility von skip button;
+  //classList.add visibility zu conclusions button}
+
+  //if distanceFromTop > positionTopConclusion {classList.remove visibility von conclusion button;}
+});
+
+function changeButtons(distanceFromTop) {
+  if (distanceFromTop < positionTopIntro) {
+    buttonSkipIntroJS[0].classList.add(`visible`);
+  } else if (distanceFromTop >= positionTopIntro) {
+    buttonSkipIntroJS[0].classList.remove(`visible`);
+    buttonSkipConclusionJS[0].classList.add(`visible`);
+  }
+
+  if (distanceFromTop >= positionTopConclusion) {
+    buttonSkipConclusionJS[0].classList.remove(`visible`);
+  }
+}
+
+console.log(`viweport-Height:${visualViewport.height * 4}`);
 
 /*
 //der versuch mit einem (jetzt gelöschten button zur nächsten section zur scollen)
@@ -42,7 +78,7 @@ function runfunctionsOnClick() {
 }
 
 function clickFinish() {
-  h1resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]`;
+  h2resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]`;
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   //funktion versteckt den "skip into" button, lässt "conclusion" button erscheinen
   console.log(
@@ -67,7 +103,7 @@ function onClickTwice() {
 
 //final click und dann ansicht der eigentlichen seite
 function onClickThird() {
-  h1resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]`;
+  h2resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]`;
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   //funktion versteckt den "skip into" button, lässt "conclusion" button erscheinen
   caseNumbers++;
@@ -93,14 +129,45 @@ function secondDataItemToChartItem(dataItem) {
 
 function drawLineChart(chartData, chartPosition) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
+  Chart.defaults.font.size = 14;
+  Chart.defaults.elements.point.radius = 0.0;
+  Chart.defaults.elements.point.borderWidth = 0;
+  //Chart.defaults.elements.point.backgroundColor = "rgb(212, 231,230)";
+  Chart.defaults.elements.point.hoverRadius = 5;
+  //Chart.defaults.elements.pointStyle = `line`;
+  Chart.defaults.elements.line.borderCapStyle = `round`;
+  Chart.defaults.elements.line.tension = 0.1;
+  Chart.defaults.font.color = "#ffffff";
+  Chart.defaults.plugins.legend.display = false;
+  //canvas.style.
   const myChart = new Chart(ctx, {
     type: "line",
     data: {
       datasets: [
         {
           data: chartData,
+          backgroundColor: ["#000000"],
+          borderColor: ["#000000"],
+          borderWidth: 3,
         },
       ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: "",
+        },
+      },
+      aspectRatio: 3,
+      scales: {
+        y: {
+          min: 0,
+          max: 1,
+        },
+      },
+      //legend: { display: false },
     },
   });
 }

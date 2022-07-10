@@ -10,8 +10,8 @@
   </head>
 
   <body>
-    <div class="root">
-      <section id="0" class="contentSection">
+    <div id="scroller" class="root">
+      <section id="0" class="contentSection start">
         <h1>Sei schlauer als das Bürgeramt Berlin!</h1>
         <p class="fliesstext">
           Nahmen ihm alles, was ihm lieb war; den Kasten, in dem die Laubsäge
@@ -25,16 +25,16 @@
           preßte sich an das Glas, das ihn festhielt und seinem heißen Bauch
           wohltat. Auf die Plätze, fertig...
         </p>
-        <button class="buttonLos">Los!</button>
-        <button class="skipIntro"><a href="#1">Skip Intro</a></button>
+        <button class="buttonLos"><a href="#01">Los!</a></button>
       </section>
-
+      <button class="skipButton Intro visible"><a href="#04">Skip Intro</a></button>
+      <button class="skipButton Conclusion"><a href="#8">jump to conclusions</a></button>
       
       <section id="01" class="question">
         <h2>Brauchst du einen Bürgeramtstermin in Berlin?</h2>
         <div class="iconContainer">
-          <button class="ja">ja</button>
-          <button class="nein">nein</button>
+          <button class="ja"><a href="#02">ja</a></button>
+          <button class="nein"><a href="#04">nein</a></button>
         </div>
         <p class="fussNotenTextH1">
             *abgeleitet vom Datensatz aus Terminen, die über einen Monat im 2min
@@ -45,8 +45,8 @@
       <section id="02" class="question">
          <h2>Brauchst du ihn in den nächsten 14 Tagen?</h2>
         <div class="iconContainer">
-          <button class="ja">ja</button>
-          <button class="nein">nein</button>
+          <button class="ja"><a href="#03">ja</a></button>
+          <button class="nein"><a href="#04">nein</a></button>
         </div>
          <p class="fussNotenTextH1">
             *abgeleitet vom Datensatz aus Terminen, die über einen Monat im 2min
@@ -57,8 +57,8 @@
       <section id="03" class="question">
           <h2>Brauchst du ihn am besten schon heute?</h2>
           <div class="iconContainer">
-            <button class="ja">ja</button>
-            <button class="nein">nein</button>
+            <button class="ja"><a href="#04">ja</a></button>
+            <button class="nein"><a href="#04">nein</a></button>
           </div>
           <p class="fussNotenTextH1">
             *abgeleitet vom Datensatz aus Terminen, die über einen Monat im 2min
@@ -67,8 +67,8 @@
       </section>
 
       <section id="04" class="question beginningOfWebsite">
-        
-         <h2 class="resultH2"><p class="prozentzahl">2,34%</p>Das ist die Wahrscheinlichkeit, mit der du monentan einen Termin beim Bürgeramt bekommen würdest</h2>
+          <p class="prozentzahl">2,34%</p>
+         <h2 class="resultH2">Das ist die Wahrscheinlichkeit, mit der du monentan einen Termin beim Bürgeramt bekommen würdest</h2>
          
          <div class="iconContainer">
             <p class="fussNotenTextH1">
@@ -80,7 +80,7 @@
         </section>
 
     
-      <section id="1" class="contentSection whiteSection green">
+      <section id="1" class="contentSection first whiteSection green">
           <p class="fliesstext">
             Sie waren schwer und schwarz von Regen, denn sie polterten murrend
             wie feste, wuchtige Dinge, wenn sie aneinander stießen, und manchmal
@@ -196,7 +196,7 @@
       </section>
     </section>
 
-    <section id="6" class="contentSection whiteSection green">
+    <section id="8" class="contentSection whiteSection green">
       <h2>so siehts aus:</h2>
       <div class="iconContainer">
         <div class="chart-container">
