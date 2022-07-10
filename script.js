@@ -123,23 +123,34 @@ function dataItemToChartItem(dataItem) {
 function secondDataItemToChartItem(dataItem) {
   return {
     x: dataItem.Time, //x achse
-    y: parseFloat(dataItem.dateByTomorrowProb), //y achse daten
+    y: [
+      parseFloat(dataItem.dateByTomorrowProb),
+      //parseFloat(dataItem.anydayProb),
+    ], //y achse daten
   };
 }
 
 function drawLineChart(chartData, chartPosition) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
+
   Chart.defaults.font.size = 14;
-  Chart.defaults.elements.point.radius = 0.0;
+  Chart.defaults.elements.point.radius = 0;
   Chart.defaults.elements.point.borderWidth = 0;
-  //Chart.defaults.elements.point.backgroundColor = "rgb(212, 231,230)";
   Chart.defaults.elements.point.hoverRadius = 5;
-  //Chart.defaults.elements.pointStyle = `line`;
   Chart.defaults.elements.line.borderCapStyle = `round`;
   Chart.defaults.elements.line.tension = 0.1;
   Chart.defaults.font.color = "#ffffff";
   Chart.defaults.plugins.legend.display = false;
+  Chart.defaults.plugins.tooltip.backgroundColor = `#ffffff`;
+  Chart.defaults.plugins.tooltip.cornerRadius = 0;
+  Chart.defaults.plugins.tooltip.bodyColor = `#000000`;
+  Chart.defaults.plugins.tooltip.titleColor = `#000000`;
+  Chart.defaults.plugins.tooltip.padding = 9;
+  Chart.defaults.plugins.tooltip.boxPadding = 6;
+  Chart.defaults.plugins.tooltip.position = `nearest`;
+  //Chart.defaults.options.scales[x].grid.borderColor = `#000000`;
   //canvas.style.
+
   const myChart = new Chart(ctx, {
     type: "line",
     data: {
@@ -150,6 +161,12 @@ function drawLineChart(chartData, chartPosition) {
           borderColor: ["#000000"],
           borderWidth: 3,
         },
+        /* {
+          data: chartData,
+          backgroundColor: ["#000000"],
+          borderColor: ["#ffffff"],
+          borderWidth: 3,
+        },*/
       ],
     },
     options: {
@@ -165,15 +182,32 @@ function drawLineChart(chartData, chartPosition) {
         y: {
           min: 0,
           max: 1,
+          drawTicks: true,
+          //color: `#ff00ff`,
+        },
+        x: {
+          grid: {
+            display: false,
+          },
         },
       },
-      //legend: { display: false },
     },
   });
 }
 
 function drawBarChart(chartData, chartPosition) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
+
+  Chart.defaults.font.size = 14;
+  Chart.defaults.font.color = "#ffffff";
+  Chart.defaults.plugins.legend.display = false;
+  Chart.defaults.plugins.tooltip.backgroundColor = `#ffffff`;
+  Chart.defaults.plugins.tooltip.cornerRadius = 0;
+  Chart.defaults.plugins.tooltip.bodyColor = `#000000`;
+  Chart.defaults.plugins.tooltip.titleColor = `#000000`;
+  Chart.defaults.plugins.tooltip.padding = 9;
+  Chart.defaults.plugins.tooltip.boxPadding = 6;
+  Chart.defaults.plugins.tooltip.position = `nearest`;
   const myChart = new Chart(ctx, {
     type: "bar",
     data: {
@@ -182,6 +216,23 @@ function drawBarChart(chartData, chartPosition) {
           data: chartData,
         },
       ],
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        //aspectRatio: 3,
+        /*scales: {
+          y: {
+            //min: 0,
+            max: 1,
+            //color: `#ff00ff`,
+          },
+          x: {
+            grid: {
+              display: false,
+            },
+          },
+        },*/
+      },
     },
   });
 }
