@@ -204,9 +204,13 @@ section {
 }
 
 .chart-container {
-    width: 92%;
+    width: 90%;
     max-height: 50vh;
    /* height: 80vh; */
+}
+
+.chart-container.bar{
+    width: 70%;
 }
 
 

@@ -116,7 +116,7 @@ function onClickThird() {
 function dataItemToChartItem(dataItem) {
   return {
     x: dataItem.Time, //x achse
-    y: parseFloat(dataItem.anydayProb), //y achse daten
+    y: `${parseFloat(dataItem.anydayProb) * 100}`, //y achse daten
   };
 }
 
@@ -124,11 +124,19 @@ function secondDataItemToChartItem(dataItem) {
   return {
     x: dataItem.Time, //x achse
     y: [
-      parseFloat(dataItem.dateByTomorrowProb),
+      parseFloat(dataItem.dateByTomorrowProb) * 100,
       //parseFloat(dataItem.anydayProb),
     ], //y achse daten
   };
 }
+
+/*
+function thirdDataItemToChartItem(dataItem) {
+  return {
+    x:,
+    y:,
+  }
+}*/
 
 function drawLineChart(chartData, chartPosition) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
@@ -176,19 +184,39 @@ function drawLineChart(chartData, chartPosition) {
           display: true,
           text: "",
         },
+        /* tooltip: {
+          callbacks: {
+            afterTitle: `%`,
+          },
+        },*/
       },
       aspectRatio: 3,
       scales: {
         y: {
           min: 0,
-          max: 1,
-          drawTicks: true,
+          max: 100,
+
+          title: {
+            color: "#000000",
+            display: true,
+            text: "Prozent",
+          },
+          //tickColor: `#ffffff`,
           //color: `#ff00ff`,
         },
         x: {
           grid: {
-            display: false,
+            //display: false,
+            drawOnChartArea: false,
+            tickLength: 16,
+            //tickColor: `#ffffff`,
           },
+          title: {
+            color: "#000000",
+            display: true,
+            text: "Uhrzeit",
+          },
+          text: `Uhrzeit`,
         },
       },
     },
@@ -198,16 +226,17 @@ function drawLineChart(chartData, chartPosition) {
 function drawBarChart(chartData, chartPosition) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
 
-  Chart.defaults.font.size = 14;
-  Chart.defaults.font.color = "#ffffff";
-  Chart.defaults.plugins.legend.display = false;
-  Chart.defaults.plugins.tooltip.backgroundColor = `#ffffff`;
-  Chart.defaults.plugins.tooltip.cornerRadius = 0;
-  Chart.defaults.plugins.tooltip.bodyColor = `#000000`;
-  Chart.defaults.plugins.tooltip.titleColor = `#000000`;
-  Chart.defaults.plugins.tooltip.padding = 9;
-  Chart.defaults.plugins.tooltip.boxPadding = 6;
-  Chart.defaults.plugins.tooltip.position = `nearest`;
+  Chart.defaults.font.size = 16; //geht
+  //Chart.defaults.font.color = "#ffffff";
+  Chart.defaults.plugins.legend.display = false; //geht
+  Chart.defaults.plugins.tooltip.backgroundColor = `#ffffff`; //geht
+  Chart.defaults.plugins.tooltip.cornerRadius = 0; //geht
+  Chart.defaults.plugins.tooltip.bodyColor = `#000000`; //geht
+  Chart.defaults.plugins.tooltip.titleColor = `#000000`; //geht
+  Chart.defaults.plugins.tooltip.padding = 9; //geht
+  Chart.defaults.plugins.tooltip.boxPadding = 6; //geht
+  Chart.defaults.plugins.tooltip.position = `nearest`; //geht
+  //Chart.defaults.global.barThickness = flex;
   const myChart = new Chart(ctx, {
     type: "bar",
     data: {
@@ -217,21 +246,31 @@ function drawBarChart(chartData, chartPosition) {
         },
       ],
       options: {
+        //ab hier funktioniert nix mehr
         responsive: true,
-        maintainAspectRatio: false,
-        //aspectRatio: 3,
-        /*scales: {
+        //maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: "",
+          },
+        },
+        aspectRatio: 3,
+        scales: {
           y: {
-            //min: 0,
+            //offset: false,
+            min: 0,
             max: 1,
             //color: `#ff00ff`,
           },
           x: {
+            offset: false,
             grid: {
-              display: false,
+              drawOnChartArea: false,
+              tickLength: 16,
             },
           },
-        },*/
+        },
       },
     },
   });
