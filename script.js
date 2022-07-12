@@ -5,7 +5,7 @@ const h2resultJS = document.getElementsByClassName(`resultH2`);
 //dann die buttons zugänglich machen
 const buttonJA = document.getElementsByClassName(`ja`);
 //const buttonJA = Array.from(buttonJAhtml);
-//console.log(buttonJA);
+console.log(buttonJA[0]);
 
 const buttonNEIN = document.getElementsByClassName(`nein`);
 const rootJS = document.getElementsByClassName(`root`);
@@ -46,21 +46,25 @@ function changeButtons(distanceFromTop) {
   }
 }
 
-console.log(`viweport-Height:${visualViewport.height * 4}`);
+//console.log(`viweport-Height:${visualViewport.height * 4}`);
 
-const stickyHeader = document.getElementsByClassName(`h2ToBesticky`);
-const stickySub = document.getElementsByClassName(`pToBesticky`);
+//const stickyHeader = document.getElementsByClassName(`h2ToBesticky`);
+//const stickySub = document.getElementsByClassName(`pToBesticky`);
+const stickyH3 = document.getElementsByClassName(`stickyH3`);
+const stickyBox = document.getElementsByClassName(`stickyBox`);
 const positionTopStickySection = visualViewport.height * 12;
 const positionBottomStickyScrolling = visualViewport.height * 15;
 
 function startStickyScrolling() {
-  stickyHeader[0].classList.add(`stickyText`);
-  stickySub[0].classList.add(`stickyText`);
+  //stickyHeader[0].classList.add(`stickyText`);
+  //stickySub[0].classList.add(`stickyText`);
+  stickyBox[0].classList.add(`stickyBoxIt`);
 }
 
 function noStickyScrolling() {
-  stickyHeader[0].classList.remove(`stickyText`);
-  stickySub[0].classList.remove(`stickyText`);
+  //stickyHeader[0].classList.remove(`stickyText`);
+  //stickySub[0].classList.remove(`stickyText`);
+  stickyBox[0].classList.remove(`stickyBoxIt`);
 }
 
 function makeStickySections(distanceFromTop) {
@@ -72,6 +76,17 @@ function makeStickySections(distanceFromTop) {
 
   if (distanceFromTop > positionBottomStickyScrolling) {
     noStickyScrolling();
+  }
+
+  //fist grafik
+  if (distanceFromTop <= visualViewport.height * 12) {
+    stickyH3[0].innerText = `insgesamt: 100 Suchende`;
+  }
+  if (distanceFromTop > visualViewport.height * 12) {
+    stickyH3[0].innerText = `bei Besuch der Webseite\nzu egal welcher Zeit`;
+  }
+  if (distanceFromTop > visualViewport.height * 14) {
+    stickyH3[0].innerText = `bei Besuch der Webseite\num 10:10 Uhr`;
   }
 }
 
@@ -85,7 +100,7 @@ function scrollToBeginning() {
   beginningOfWebsite.scrollIntoView();
 }*/
 
-console.log(buttonNEIN[0]); //test
+//console.log(buttonNEIN[0]); //test
 
 // Variable, nachdem die custon wahrscheinlichkeit ausgerechnet wird (wie oft "ja" gedrückt)
 let caseNumbers = 0;
@@ -123,11 +138,17 @@ buttonNEIN[0].addEventListener("click", clickFinish);
 function onClickFirst() {
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   caseNumbers++;
+  console.log(
+    `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}`
+  );
 }
 
 function onClickTwice() {
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   caseNumbers++;
+  console.log(
+    `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}`
+  );
 }
 
 //final click und dann ansicht der eigentlichen seite

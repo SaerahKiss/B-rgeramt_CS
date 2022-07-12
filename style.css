@@ -181,9 +181,16 @@ section {
     justify-content: space-between;
 }
 
+.stickyBoxIt{
+    position: fixed;
+    top: 0px;
+    /* left: 40px; */
+     z-index: 20;
+}
+
 .stickyText{
     position: fixed;
-    top: 40px;
+    top: 0px;
     /* left: 40px; */
     z-index: 20;
     
