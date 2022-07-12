@@ -7,6 +7,10 @@
     <title>intro buergeramt</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+      rel="stylesheet">
   </head>
 
   <body>
@@ -17,14 +21,8 @@
           Nahmen ihm alles, was ihm lieb war; den Kasten, in dem die Laubsäge
           und andere Werkzeuge lagen, hatten sie schon hinausgetragen; lockerten
           jetzt den schon im Boden fest eingegrabenen Schreibtisch, an dem er
-          als Handelsakademiker, als Bürgerschüler, ja sogar schon als
-          Volksschüler seine Aufgaben geschrieben hatte, – da hatte er wirklich
-          keine Zeit mehr, er wußte wirklich nicht, was er zuerst retten sollte,
-          da sah er an der im übrigen schon leeren Wand auffallend das Bild der
-          in lauter Pelzwerk gekleideten Dame hängen, kroch eilends hinauf und
-          preßte sich an das Glas, das ihn festhielt und seinem heißen Bauch
-          wohltat. Auf die Plätze, fertig...
-        </p>
+          als Handelsakademiker, als Bürgerschüler, </p>
+        <p> die Plätze, fertig...</p>
         <button class="buttonLos"><a href="#01">Los!</a></button>
       </section>
       <button class="skipButton Intro visible"><a href="#04">Skip Intro</a></button>
@@ -98,7 +96,7 @@
       </section>
     
       <section id="1" class="contentSection first whiteSection green">
-        <h2>Zeitachse</h2>
+        <h3>Zeitachse</h3>
         <p class="fliesstext">
             Sie waren schwer und schwarz von Regen, denn sie polterten murrend
             wie feste, wuchtige Dinge, wenn sie aneinander stießen, und manchmal
@@ -123,7 +121,7 @@
       </section>
 
       <section id="3" class="contentSection">
-        <h2>Für Effektivität, schaue...</h2>
+        <h3>Für Effektivität, schaue...</h3>
         <div class="iconContainer">
           <div class="platzhalterIcon"></div>
           <p>nach dem Morgenkaffee</p>
@@ -135,7 +133,7 @@
       </section>
 
       <section id="4" class="contentSection">
-        <h2>Wenn ihr es genau wissen wollt: </h2>
+        <h3>Wenn ihr es genau wissen wollt: </h3>
         <div class="iconContainer">
           <div class="textBildContainer">
             <h3>die beste Zeit zum gucken ist 10:10 Uhr</h3>
@@ -159,11 +157,11 @@
         </div>
       </section>
 
-      <section id="5" class="contentSection whiteSection">
-        <h2>Wie stehen deine Chancen</h2>
-        <div class="iconContainer">
-          <div class="textBildContainer">
-            <p class="fliesstextBox">
+      <section id="5" class="contentSection whiteSection stickyScroll">
+        
+        <div>
+          <h2 class="h2ToBesticky">Wie stehen deine Chancen</h2>
+            <p class="fliesstextBox pToBesticky">
               er und schwarz von Regen, denn sie polterten murrend wie feste,
               wuchtige Dinge, wenn sie aneinander stießen, und manchmal fuhr ein
               leiser Blitz über ihre schwarze Fläche wie ein knisterndes
@@ -172,23 +170,29 @@
               eigenen Fülle. Wie der eiserne Vorhang eines Theaters senkte sich
               allmähli
             </p>
-          </div>
-          
-          <div class="platzhalterBild"></div>
+        </div>
+        <div class="platzhalterBild"></div>
+      </section>
+
+      <section id="5" class="contentSection whiteSection stickyScroll">
+      
+        <div>
           
         </div>
+        <div class="platzhalterBild"></div>
+      </section>
+
+      <section id="5" class="contentSection whiteSection stickyScroll">
+      
+        <div>
+          
+        </div>
+        <div class="platzhalterBild"></div>
       </section>
 
       <section id="5" class="contentSection whiteSection">
         <h2>immerhin 13% Erfolgschance beim ersten Versuch!</h2>
         <div class="iconContainer">
-          <div class="textBildContainer">
-            
-          </div>
-      
-          <div class="platzhalterBild"></div>
-      
-        </div>
       </section>
 
       <section id="6" class="contentSection whiteSection green">
@@ -206,7 +210,7 @@
     </section>
 
     <section id="8" class="contentSection whiteSection green">
-      <h2>so siehts aus:</h2>
+      <h3>so siehts aus:</h3>
       <div class="iconContainer">
         <div class="chart-container">
           <canvas id="mySecondChart"></canvas>
@@ -223,18 +227,32 @@
 
   
 
-    <section id="7" class="contentSection">
-      <h2>letzte Section</h2>
-      <p>
-        Erwürgt war alles von dem schwarzen Gewicht, das sich über die Tiefe
-        senkte, die Vögel zirpten nicht mehr, atemlos standen die Bäume, und
-        selbst die kleinen Gräser wagten nicht mehr zu zittern
-      </p>
-      <div class="chart-container bar">
-        <canvas id="myBarChart"></canvas>
+    <section id="7" class="contentSection whiteSection green">
+      <h3>Polar Chart Section</h3>
+      <div class="iconContainer">
+        <p class="fliesstextBox">
+         Erwürgt war alles von dem schwarzen Gewicht, das sich über die Tiefe
+          senkte, die Vögel zirpten nicht mehr, atemlos standen die Bäume, und
+          selbst die kleinen Gräser wagten nicht mehr zu zittern
+        </p>
+        <div class="bar chart-container">
+         <canvas id="myPolarChart"></canvas>
+        </div>
       </div>
     </section>
+
+    <section id="8" class="contentSection">
+      <h2>Die zehn Gebote</h2>
+      <h3>Gebot 1</h3>
+      <h3>Gebot 2</h3>
+      <h3>Gebot 3</h3>
+      <h3>Gebot 4</h3>
+      <h3>Gebot 5</h3>
+      <h3>Gebot 6</h3>
+    </section>
+
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
     <script src="script.js"></script>
   </body>
