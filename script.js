@@ -3,11 +3,17 @@ console.log(`hello`);
 const h2resultJS = document.getElementsByClassName(`resultH2`);
 
 //dann die buttons zugänglich machen
-const buttonJA = document.getElementsByClassName(`ja`);
-//const buttonJA = Array.from(buttonJAhtml);
-console.log(buttonJA[0]);
+const jaButtons = Array.from(document.getElementsByClassName(`ja`));
+//const jaButtons = Array.from(jaButtonshtml);
+jaButtons.forEach((jaButton) => {
+  jaButton.addEventListener("click", runfunctionsOnClick);
+});
 
-const buttonNEIN = document.getElementsByClassName(`nein`);
+const neinButtons = Array.from(document.getElementsByClassName(`nein`));
+neinButtons.forEach((neinButton) => {
+  neinButton.addEventListener("click", clickFinish);
+});
+
 const rootJS = document.getElementsByClassName(`root`);
 
 const buttonSkipIntroJS = document.getElementsByClassName(`Intro`);
@@ -52,8 +58,6 @@ function changeButtons(distanceFromTop) {
 //const stickySub = document.getElementsByClassName(`pToBesticky`);
 const stickyH3 = document.getElementsByClassName(`stickyH3`);
 const stickyBox = document.getElementsByClassName(`stickyBox`);
-const positionTopStickySection = visualViewport.height * 12;
-const positionBottomStickyScrolling = visualViewport.height * 15;
 
 function startStickyScrolling() {
   //stickyHeader[0].classList.add(`stickyText`);
@@ -68,6 +72,9 @@ function noStickyScrolling() {
 }
 
 function makeStickySections(distanceFromTop) {
+  const positionTopStickySection = visualViewport.height * 12 - 85;
+  const positionBottomStickyScrolling = visualViewport.height * 15 - 300;
+
   if (distanceFromTop < positionTopStickySection) {
     noStickyScrolling();
   } else if (distanceFromTop >= positionTopStickySection) {
@@ -89,16 +96,6 @@ function makeStickySections(distanceFromTop) {
     stickyH3[0].innerText = `bei Besuch der Webseite\num 10:10 Uhr`;
   }
 }
-
-/*
-//der versuch mit einem (jetzt gelöschten button zur nächsten section zur scollen)
-const scrollElement = document.getElementsByClassName(`beginningOfWebsite`);
-const scollVersuchButton =
-  document.getElementsByClassName(`scollVersuchButton`);
-scollVersuchButton.addEventListener("click", scrollToBeginning);
-function scrollToBeginning() {
-  beginningOfWebsite.scrollIntoView();
-}*/
 
 //console.log(buttonNEIN[0]); //test
 
@@ -130,8 +127,7 @@ function clickFinish() {
   );
 }
 
-buttonJA[0].addEventListener("click", runfunctionsOnClick); //funktioniert nicht
-buttonNEIN[0].addEventListener("click", clickFinish);
+// jaButtons[0].addEventListener("click", runfunctionsOnClick); //funktioniert nicht
 
 //bei jedem klick -> add.eventlistener und der text (über class) ändert sich
 
@@ -233,6 +229,7 @@ function drawLineChart(chartData, chartPosition) {
           display: true,
           text: "",
         },
+
         /* tooltip: {
           callbacks: {
             afterTitle: `%`,
@@ -275,49 +272,41 @@ function drawLineChart(chartData, chartPosition) {
 function drawBarChart(chartData, chartPosition) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
 
-  Chart.defaults.font.size = 16; //geht
-  //Chart.defaults.font.color = "#ffffff";
-  Chart.defaults.plugins.legend.display = false; //geht
-  Chart.defaults.plugins.tooltip.backgroundColor = `#ffffff`; //geht
-  Chart.defaults.plugins.tooltip.cornerRadius = 0; //geht
-  Chart.defaults.plugins.tooltip.bodyColor = `#000000`; //geht
-  Chart.defaults.plugins.tooltip.titleColor = `#000000`; //geht
-  Chart.defaults.plugins.tooltip.padding = 9; //geht
-  Chart.defaults.plugins.tooltip.boxPadding = 6; //geht
-  Chart.defaults.plugins.tooltip.position = `nearest`; //geht
-  //Chart.defaults.global.barThickness = flex;
   const myChart = new Chart(ctx, {
     type: "bar",
     data: {
       datasets: [
         {
           data: chartData,
+          backgroundColor: "#000000",
         },
       ],
-      options: {
-        //ab hier funktioniert nix mehr
-        responsive: true,
-        //maintainAspectRatio: false,
-        plugins: {
-          title: {
-            display: true,
-            text: "",
-          },
+    },
+    options: {
+      //ab hier funktioniert nix mehr
+      responsive: true,
+      //maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: "",
         },
-        aspectRatio: 3,
-        scales: {
-          y: {
-            //offset: false,
-            min: 0,
-            max: 1,
-            //color: `#ff00ff`,
-          },
-          x: {
-            offset: false,
-            grid: {
-              drawOnChartArea: false,
-              tickLength: 16,
-            },
+      },
+      aspectRatio: 3,
+      scales: {
+        y: {
+          //offset: false,
+          min: 0,
+          max: 1,
+          //color: `#ff00ff`,
+        },
+        x: {
+          grid: {
+            //display: false,
+            drawBorder: false,
+            drawOnChartArea: false,
+            //drawTicks: false,
+            tickLength: 16,
           },
         },
       },
@@ -333,7 +322,8 @@ function drawLineChartTwoLines(
 ) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
 
-  Chart.defaults.font.size = 14;
+  Chart.defaults.font.size = 16;
+  /*
   Chart.defaults.elements.point.radius = 0;
   Chart.defaults.elements.point.borderWidth = 0;
   Chart.defaults.elements.point.hoverRadius = 5;
@@ -347,7 +337,7 @@ function drawLineChartTwoLines(
   Chart.defaults.plugins.tooltip.titleColor = `#000000`;
   Chart.defaults.plugins.tooltip.padding = 9;
   Chart.defaults.plugins.tooltip.boxPadding = 6;
-  Chart.defaults.plugins.tooltip.position = `nearest`;
+  Chart.defaults.plugins.tooltip.position = `nearest`;*/
   //Chart.defaults.options.scales[x].grid.borderColor = `#000000`;
   //canvas.style.
 
@@ -356,12 +346,14 @@ function drawLineChartTwoLines(
     data: {
       datasets: [
         {
+          label: "2 Tage",
           data: chartData1,
           backgroundColor: ["#000000"],
           borderColor: ["#000000"],
           borderWidth: 3,
         },
         {
+          label: "14 Tage",
           data: chartData3,
           backgroundColor: ["rgba(255,255,255,0)"],
           borderColor: ["#DD7F7F"],
@@ -369,6 +361,7 @@ function drawLineChartTwoLines(
           fill: true,
         },
         {
+          label: "egal wann",
           data: chartData2,
           backgroundColor: ["rgba(255,255,255,0.5)"],
           borderColor: ["#466362"],
@@ -389,6 +382,12 @@ function drawLineChartTwoLines(
         title: {
           display: true,
           text: "",
+        },
+        legend: {
+          display: true,
+          title: {
+            text: `bla`,
+          },
         },
         /* tooltip: {
           callbacks: {
@@ -445,6 +444,7 @@ function drawPolarChart(chartPosition) {
       ],
       datasets: [
         {
+          borderColor: `#EFF5DB`,
           label: "My First Dataset",
           data: [21, 5, 1, 1, 7, 66],
           backgroundColor: [
@@ -452,7 +452,7 @@ function drawPolarChart(chartPosition) {
             "#8E89BF",
 
             "#000000",
-            "#ffffff",
+            "#000000",
 
             "#DF928E",
             "#000000",
@@ -464,8 +464,11 @@ function drawPolarChart(chartPosition) {
       legend: {
         display: false,
       },
-      scale: {
-        display: false,
+      scales: {
+        r: {
+          drawOnChartArea: false,
+          display: false,
+        },
       },
     },
   });

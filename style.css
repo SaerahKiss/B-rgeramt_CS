@@ -175,17 +175,32 @@ section {
     /*justify-content: space-between;*/
 }
 
+.polar {
+    margin-top: -100px;
+    margin-right: -25%;
+}
+
 .stickyScroll{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
+.stickyBox {
+    pointer-events: none;
+    width: 50%;
+    position: absolute;
+}
+
 .stickyBoxIt{
     position: fixed;
-    top: 0px;
+    top: 50px;
     /* left: 40px; */
-     z-index: 20;
+    z-index: 20;
+}
+
+.stickyBox h2 {
+    margin: 0;
 }
 
 .stickyText{
@@ -231,9 +246,10 @@ section {
    /* height: 80vh; */
 }
 
+/*
 .chart-container.bar{
     width: 70%;
-}
+}*/
 
 
 /*
