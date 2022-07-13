@@ -221,8 +221,13 @@ function getProbByCaseNumber(caseNumber) {
 
 let ProbNow = `iii`; //da sollte die wahrscheinlichkeit drin gespeichert werden...
 
-function calculateProbForNow(askedProbCase, dataTime) {
-  return askedProbCase.Time === dataTime;
+function calculateProbNow(data, ProbCase) {
+  const rightTime = data.find(getRightTime(data, TimeNow));
+  const rightProb = data.rightTime.ProbCase;
+}
+
+function getRightTime(data, TimeNow) {
+  return data.Time === TimeNow;
 }
 
 //return fruit.name === "cherries";
@@ -588,35 +593,40 @@ function drawCharts(dataList) {
   console.log(Object.values(barChartData));
 }
 
-d3.csv("Data1.csv").then(data => {
+d3.csv("Data1.csv").then((data) => {
   // Diese Funktion dauert ein wenig. Deshalb hast du außerhalb dieser Funktion keinen Zugriff auf die Daten.
   // Erst wenn das Auslesen aus der CSV abgeschloßen ist, kannst du damit was machen.
-  
+
   // >>> schau in die Console. Da siehst du die Daten die du bekommst.
   // Daten sind ein Array von Objekten
-  console.log(data)
-  
+  console.log(data);
+
+  drawCharts(data);
   // hier function aufrufen um charts zu malen zb.
-  
+
   // drawMyNiceChart(data)
   // oder zur Berechnung
   // getMedianTime(data)
-  
+
   // mit D3 kannst du das relativ einfach machen:
-  const median = d3.median(data, d => {
-    return Number(d.anyday)
-  })
-  
+  const median = d3.median(data, (d) => {
+    return Number(d.anydayProb);
+  });
+
   // ist das gleiche wie
   // const median = d3.median(data, d => Number(d.anyday))
-  
+
+  console.log(`test${data.find(calculateProbNow(askedProbCase, dataTime))}`);
+  console.log(median); //kommt von Gustav - was ist das? ein Durchschnitt?
+
+  console.log(calculateProbNow(data, askedProbCase));
 });
 // d3.csv("Data1.csv").then(
 //   drawCharts,
-//   calculateProbForNow(askedProbCase, dataTime) //????
+//   calculateProbNow(askedProbCase, dataTime) //????
 // );
 
-/*d3.csv("Data1.csv").find(calculateProbForNow(askedProbCase, dataTime));*/
+/*d3.csv("Data1.csv").find(calculateProbNow(askedProbCase, dataTime));*/
 
 //d3.csv("Data1.csv").then((d) => console.log(d));
 /*
