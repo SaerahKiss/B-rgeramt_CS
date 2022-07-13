@@ -148,9 +148,10 @@ function clickFinish() {
 let currentTime = new Date();
 
 let hours = currentTime.getHours();
+
 let minutes = currentTime.getMinutes();
-let roundedMinutes = Math.round(minutes * 0.1) * 10;
-let dataTime = `${hours}:${roundedMinutes}:00`;
+let roundedMinutes = Math.floor(minutes * 0.1) * 10;
+let dataTime = `${hours}:${roundedMinutes || "00"}:00`;
 console.log(minutes);
 console.log(roundedMinutes);
 console.log(dataTime);
@@ -221,9 +222,11 @@ function getProbByCaseNumber(caseNumber) {
 
 let ProbNow = `iii`; //da sollte die wahrscheinlichkeit drin gespeichert werden...
 
-function calculateProbNow(data, ProbCase) {
-  const rightTime = data.find(getRightTime(data, TimeNow));
-  const rightProb = data.rightTime.ProbCase;
+function calculateProbNow(data, TimeNow, itemProperty) {
+  const rightTime = data.find((pups) => getRightTime(pups, TimeNow));
+
+  const rightProb = rightTime[itemProperty];
+  return rightProb;
 }
 
 function getRightTime(data, TimeNow) {
@@ -616,10 +619,10 @@ d3.csv("Data1.csv").then((data) => {
   // ist das gleiche wie
   // const median = d3.median(data, d => Number(d.anyday))
 
-  console.log(`test${data.find(calculateProbNow(askedProbCase, dataTime))}`);
+  console.log(`test${calculateProbNow(data, dataTime, askedProbCase)}`);
   console.log(median); //kommt von Gustav - was ist das? ein Durchschnitt?
 
-  console.log(calculateProbNow(data, askedProbCase));
+  console.log(calculateProbNow(data, dataTime, `dateWithin14daysProb`)); // hier muss askedProbCase rein, so funktioniert der wert!! muss nur noch eingebunden werden
 });
 // d3.csv("Data1.csv").then(
 //   drawCharts,
