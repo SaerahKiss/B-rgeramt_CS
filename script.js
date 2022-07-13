@@ -588,10 +588,33 @@ function drawCharts(dataList) {
   console.log(Object.values(barChartData));
 }
 
-d3.csv("Data1.csv").then(
-  drawCharts,
-  calculateProbForNow(askedProbCase, dataTime) //????
-);
+d3.csv("Data1.csv").then(data => {
+  // Diese Funktion dauert ein wenig. Deshalb hast du außerhalb dieser Funktion keinen Zugriff auf die Daten.
+  // Erst wenn das Auslesen aus der CSV abgeschloßen ist, kannst du damit was machen.
+  
+  // >>> schau in die Console. Da siehst du die Daten die du bekommst.
+  // Daten sind ein Array von Objekten
+  console.log(data)
+  
+  // hier function aufrufen um charts zu malen zb.
+  
+  // drawMyNiceChart(data)
+  // oder zur Berechnung
+  // getMedianTime(data)
+  
+  // mit D3 kannst du das relativ einfach machen:
+  const median = d3.median(data, d => {
+    return Number(d.anyday)
+  })
+  
+  // ist das gleiche wie
+  // const median = d3.median(data, d => Number(d.anyday))
+  
+});
+// d3.csv("Data1.csv").then(
+//   drawCharts,
+//   calculateProbForNow(askedProbCase, dataTime) //????
+// );
 
 /*d3.csv("Data1.csv").find(calculateProbForNow(askedProbCase, dataTime));*/
 
