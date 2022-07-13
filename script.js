@@ -21,7 +21,7 @@ const buttonSkipConclusionJS = document.getElementsByClassName(`Conclusion`);
 
 //positionen für die buttons
 const positionTopIntro = visualViewport.height * 4;
-const positionTopConclusion = visualViewport.height * 9;
+const positionTopConclusion = visualViewport.height * 19;
 
 //alles was beim scrolling passieren soll
 rootJS[0].addEventListener("scroll", (event) => {
@@ -119,13 +119,41 @@ function runfunctionsOnClick() {
 }
 
 function clickFinish() {
-  h2resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]`;
+  h2resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]${hours}:${minutes}`;
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   //funktion versteckt den "skip into" button, lässt "conclusion" button erscheinen
   console.log(
-    `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}`
+    `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}. Die Uhrzeit ist: ${hours}:${minutes}`
   );
+
+  switch (caseNumbers) {
+    case 0:
+      h2resultJS[0].innerText = `[${caseNumbers} ---custom default Text]${hours}:${minutes}`;
+      break;
+    case 1:
+      h2resultJS[0].innerText = `[${caseNumbers} ---custom default Text]${hours}:${minutes}`;
+      break;
+    case 2:
+      h2resultJS[0].innerText = `[${caseNumbers} ---14 Tage Text]${hours}:${minutes}`;
+      break;
+    case 3:
+      h2resultJS[0].innerText = `[${caseNumbers} ---heute Text]${hours}:${minutes}`;
+      break;
+  }
+  getProbByCaseNumber(caseNumbers);
+  console.log(askedProbCase);
+  console.log(ProbNow);
 }
+
+let currentTime = new Date();
+
+let hours = currentTime.getHours();
+let minutes = currentTime.getMinutes();
+let roundedMinutes = Math.round(minutes * 0.1) * 10;
+let dataTime = `${hours}:${roundedMinutes}:00`;
+console.log(minutes);
+console.log(roundedMinutes);
+console.log(dataTime);
 
 // jaButtons[0].addEventListener("click", runfunctionsOnClick); //funktioniert nicht
 
@@ -156,7 +184,48 @@ function onClickThird() {
   console.log(
     `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}`
   );
+
+  switch (caseNumbers) {
+    case 0:
+      h2resultJS[0].innerText = `[${caseNumbers} ---custom default Text]${hours}:${minutes}`;
+      break;
+    case 1:
+      h2resultJS[0].innerText = `[${caseNumbers} ---custom default Text]${hours}:${minutes}`;
+      break;
+    case 2:
+      h2resultJS[0].innerText = `[${caseNumbers} ---14 Tage Text]${hours}:${minutes}`;
+      break;
+    case 3:
+      h2resultJS[0].innerText = `[${caseNumbers} ---heute Text]${hours}:${minutes}`;
+      break;
+  }
+
+  getProbByCaseNumber(caseNumbers);
+  console.log(askedProbCase);
+  //console.log(ProbNow);
 }
+
+let askedProbCase = `anydayProb`;
+function getProbByCaseNumber(caseNumber) {
+  switch (caseNumber) {
+    case 0:
+      return (askedProbCase = `anydayProb`);
+    case 1:
+      return (askedProbCase = `anydayProb`);
+    case 2:
+      return (askedProbCase = `dateWithin14daysProb`);
+    case 3:
+      return (askedProbCase = `dateByTomorrowProb`);
+  }
+}
+
+let ProbNow = `iii`; //da sollte die wahrscheinlichkeit drin gespeichert werden...
+
+function calculateProbForNow(askedProbCase, dataTime) {
+  return askedProbCase.Time === dataTime;
+}
+
+//return fruit.name === "cherries";
 
 //wandelt meine csv mit strings in eine array mit den passenden Chartwerden für 1 besonderes chart um
 function dataItemToChartItem(dataItem) {
@@ -519,7 +588,12 @@ function drawCharts(dataList) {
   console.log(Object.values(barChartData));
 }
 
-d3.csv("Data1.csv").then(drawCharts);
+d3.csv("Data1.csv").then(
+  drawCharts,
+  calculateProbForNow(askedProbCase, dataTime) //????
+);
+
+/*d3.csv("Data1.csv").find(calculateProbForNow(askedProbCase, dataTime));*/
 
 //d3.csv("Data1.csv").then((d) => console.log(d));
 /*
