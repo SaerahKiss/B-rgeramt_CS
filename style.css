@@ -39,8 +39,10 @@ button {
 h1 {
     font-size: 50pt;
     font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
     max-width: 75%;
     margin-bottom: 0.3em;
+    line-height: 1.15;
 }
 
 
@@ -51,8 +53,9 @@ h1 {
 }
 
 .prozentzahl{
-    font-size: 110pt;
-    margin-bottom: -5vh;
+    font-size: 120pt;
+    font-weight: 600;
+    margin-bottom: -6vh;
     margin-top: -0vh;
 }
 
@@ -65,19 +68,31 @@ h1 {
 h2 {
     font-size: 50pt;
     font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
     margin-bottom: 0.3em;
+    line-height: 1.15;
 }
 
 h3 {
     font-size: 30pt;
+    font-weight: 500;
     font-family: 'DM Sans', sans-serif;
+    margin-top: 0px;
+}
+
+h3.gebot{
+    margin-bottom: 0.3em;
+    padding-left: 50px;
+
 }
 
 p {
     font-family: 'DM Sans', sans-serif;
+    line-height: 1.3;
     color: black;
     max-width: 60rem;
     font-size: 14pt;
+    margin-top: 1em;
 }
 
 .fussNotenTextH1{
@@ -88,6 +103,11 @@ a{
     color:white;
     text-decoration: none;
     transition: all 250ms ease-in-out;
+}
+
+.textLink{
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
 }
 
 a:hover{
@@ -142,6 +162,11 @@ section {
     font-size: 14pt;
     width: 200px;
     height: 40px;
+    
+}
+
+.link{
+    color: #000000;
 }
 
 .skipButton {
@@ -175,8 +200,15 @@ section {
     /*justify-content: space-between;*/
 }
 
+.middle{
+    padding-left: 20%;
+    padding-right: 20%;
+    /*padding-bottom: 30%;*/
+    height: 32%;
+}
+
 .polar {
-    margin-top: -100px;
+    margin-top: -230px;
     margin-right: -25%;
 }
 
@@ -244,6 +276,10 @@ section {
     width: 90%;
     max-height: 50vh;
    /* height: 80vh; */
+}
+
+.chart-container.smaller{
+    margin-top: -40px;
 }
 
 /*

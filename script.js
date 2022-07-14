@@ -1,6 +1,7 @@
 console.log(`hello`);
 
 const h2resultJS = document.getElementsByClassName(`resultH2`);
+const ergebnisJS = document.getElementsByClassName(`prozentzahl`);
 
 //dann die buttons zugänglich machen
 const jaButtons = Array.from(document.getElementsByClassName(`ja`));
@@ -87,13 +88,13 @@ function makeStickySections(distanceFromTop) {
 
   //fist grafik
   if (distanceFromTop <= visualViewport.height * 12) {
-    stickyH3[0].innerText = `insgesamt: 100 Suchende`;
+    stickyH3[0].innerText = `insgesamt: 100 Suchende:`;
   }
   if (distanceFromTop > visualViewport.height * 12) {
-    stickyH3[0].innerText = `bei Besuch der Webseite\nzu egal welcher Zeit`;
+    stickyH3[0].innerText = `bei Besuch der Webseite\num 10:10 Uhr:`;
   }
   if (distanceFromTop > visualViewport.height * 14) {
-    stickyH3[0].innerText = `bei Besuch der Webseite\num 10:10 Uhr`;
+    stickyH3[0].innerText = `bei Besuch der Webseite\nzu egal welcher Zeit:`;
   }
 }
 
@@ -118,8 +119,10 @@ function runfunctionsOnClick() {
   count++;
 }
 
+let customProb = 0.0;
+
 function clickFinish() {
-  h2resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]${hours}:${minutes}`;
+  //h2resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]${hours}:${minutes}`;
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   //funktion versteckt den "skip into" button, lässt "conclusion" button erscheinen
   console.log(
@@ -128,21 +131,24 @@ function clickFinish() {
 
   switch (caseNumbers) {
     case 0:
-      h2resultJS[0].innerText = `[${caseNumbers} ---custom default Text]${hours}:${minutes}`;
+      h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine zu unbestimmter Zeit finden wirst.*`;
       break;
     case 1:
-      h2resultJS[0].innerText = `[${caseNumbers} ---custom default Text]${hours}:${minutes}`;
+      h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine zu unbestimmter Zeit finden wirst.*`;
       break;
     case 2:
-      h2resultJS[0].innerText = `[${caseNumbers} ---14 Tage Text]${hours}:${minutes}`;
+      h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine innerhalb der nächsten 14 Tage finden wirst.*`;
       break;
     case 3:
-      h2resultJS[0].innerText = `[${caseNumbers} ---heute Text]${hours}:${minutes}`;
+      h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine für den heutigen Tag finden wirst.*`;
       break;
   }
   getProbByCaseNumber(caseNumbers);
   console.log(askedProbCase);
   console.log(ProbNow);
+  console.log(`customProb:${customProb}`);
+
+  ergebnisJS[0].innerText = `${Math.floor(customProb * 100)} %`;
 }
 
 let currentTime = new Date();
@@ -152,8 +158,8 @@ let hours = currentTime.getHours();
 let minutes = currentTime.getMinutes();
 let roundedMinutes = Math.floor(minutes * 0.1) * 10;
 let dataTime = `${hours}:${roundedMinutes || "00"}:00`;
-console.log(minutes);
-console.log(roundedMinutes);
+//console.log(minutes);
+//console.log(roundedMinutes);
 console.log(dataTime);
 
 // jaButtons[0].addEventListener("click", runfunctionsOnClick); //funktioniert nicht
@@ -163,22 +169,22 @@ console.log(dataTime);
 function onClickFirst() {
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   caseNumbers++;
-  console.log(
-    `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}`
-  );
+  //console.log(
+  //  `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}`
+  //);
 }
 
 function onClickTwice() {
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   caseNumbers++;
-  console.log(
-    `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}`
-  );
+  //console.log(
+  //  `das ist die nummer für die uhrzeitabhängige Zahl: ${caseNumbers}`
+  //);
 }
 
 //final click und dann ansicht der eigentlichen seite
 function onClickThird() {
-  h2resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]`;
+  //h2resultJS[0].innerText = `[custom Text entsprechend dem, was geklickt wurde]`;
   //funktion spring zur nächsten section (smooth gescrollt am besten)
   //funktion versteckt den "skip into" button, lässt "conclusion" button erscheinen
   caseNumbers++;
@@ -188,22 +194,24 @@ function onClickThird() {
 
   switch (caseNumbers) {
     case 0:
-      h2resultJS[0].innerText = `[${caseNumbers} ---custom default Text]${hours}:${minutes}`;
+      h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine zu unbestimmter Zeit finden wirst.*`;
       break;
     case 1:
-      h2resultJS[0].innerText = `[${caseNumbers} ---custom default Text]${hours}:${minutes}`;
+      h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine zu unbestimmter Zeit finden wirst.*`;
       break;
     case 2:
-      h2resultJS[0].innerText = `[${caseNumbers} ---14 Tage Text]${hours}:${minutes}`;
+      h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine innerhalb der nächsten 14 Tage finden wirst.*`;
       break;
     case 3:
-      h2resultJS[0].innerText = `[${caseNumbers} ---heute Text]${hours}:${minutes}`;
+      h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine für den heutigen Tag finden wirst.*`;
       break;
   }
 
   getProbByCaseNumber(caseNumbers);
   console.log(askedProbCase);
   //console.log(ProbNow);
+  console.log(`customProb:${customProb}`);
+  ergebnisJS[0].innerText = `${Math.floor(customProb * 100)} %`;
 }
 
 let askedProbCase = `anydayProb`;
@@ -218,6 +226,11 @@ function getProbByCaseNumber(caseNumber) {
     case 3:
       return (askedProbCase = `dateByTomorrowProb`);
   }
+  console.log(
+    `test für calculate Prob${calculateProbNow(data, dataTime, askedProbCase)}`
+  );
+
+  ergebnisJS[0].innerText = `${customProb * 100} %`;
 }
 
 let ProbNow = `iii`; //da sollte die wahrscheinlichkeit drin gespeichert werden...
@@ -619,10 +632,26 @@ d3.csv("Data1.csv").then((data) => {
   // ist das gleiche wie
   // const median = d3.median(data, d => Number(d.anyday))
 
-  console.log(`test${calculateProbNow(data, dataTime, askedProbCase)}`);
-  console.log(median); //kommt von Gustav - was ist das? ein Durchschnitt?
-
-  console.log(calculateProbNow(data, dataTime, `dateWithin14daysProb`)); // hier muss askedProbCase rein, so funktioniert der wert!! muss nur noch eingebunden werden
+  console.log(
+    `test dateByTomorrowProb: ${calculateProbNow(
+      data,
+      dataTime,
+      `dateByTomorrowProb`
+    )}`
+  );
+  console.log(
+    `test dateWithin14daysProb: ${calculateProbNow(
+      data,
+      dataTime,
+      `dateWithin14daysProb`
+    )}`
+  );
+  console.log(
+    `test anydayProb: ${calculateProbNow(data, dataTime, `anydayProb`)}`
+  );
+  //console.log(median); //kommt von Gustav - was ist das? ein Durchschnitt?
+  customProb = calculateProbNow(data, dataTime, askedProbCase);
+  console.log(customProb); // hier muss askedProbCase rein, so funktioniert der wert!! muss nur noch eingebunden werden
 });
 // d3.csv("Data1.csv").then(
 //   drawCharts,
