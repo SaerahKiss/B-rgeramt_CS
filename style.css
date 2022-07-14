@@ -225,8 +225,8 @@ img{
 
 
 .linie{
-   margin-top: 40vh;
-   width: 100%;
+   width: 68%;
+   margin-top: 10vh;
 
 }
 
@@ -252,7 +252,8 @@ img{
     padding-left: 20%;
     padding-right: 20%;
     /*padding-bottom: 30%;*/
-    height: 32%;
+    
+    justify-content: center;
 }
 
 .polar {
@@ -292,12 +293,15 @@ img{
 }
 
 .platzhalterIcon {
-    width: 100px;
-    height: 70px;
-    background-color: black;
-    margin-bottom: 30px;
-    margin-right: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: -10vh;
+    margin-top: -10vh;
+    width: 40%;
+    margin-right: 5%;
 }
+
+
 
 .fliesstext{
     max-width: 63%;
