@@ -181,6 +181,7 @@ section {
     font-size: 14pt;
     height: 60px;
     width: 120px;
+    z-index: 30;
 }
 
 .visible {

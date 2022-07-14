@@ -453,7 +453,7 @@ function drawLineChartTwoLines(
         {
           label: "egal wann",
           data: chartData2,
-          backgroundColor: ["rgba(255,255,255,0.5)"],
+          backgroundColor: ["rgba(255,255,255,1)"],
           borderColor: ["#466362"],
           borderWidth: 0,
           fill: true,
