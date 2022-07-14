@@ -82,7 +82,7 @@ h3 {
 
 h3.gebot{
     margin-bottom: 0.3em;
-    padding-left: 50px;
+    /*padding-left: 50px;*/
 
 }
 
@@ -90,10 +90,12 @@ p {
     font-family: 'DM Sans', sans-serif;
     line-height: 1.3;
     color: black;
-    max-width: 60rem;
+    
     font-size: 14pt;
     margin-top: 1em;
 }
+
+
 
 .fussNotenTextH1{
     margin-right: 40px;
@@ -200,6 +202,45 @@ section {
     /*justify-content: space-between;*/
 }
 
+img{
+    width: 100%;
+}
+
+.first{
+    position:relative;
+}
+
+.BildContainer {
+
+    width: 400px;
+    background-repeat: no-repeat;
+
+}
+
+.BildContainer.Uhr{
+    margin-top: -150px;
+    padding: 50px;
+
+}
+
+.cover{
+    position: absolute;
+    z-index: -1;
+    width: 80%;
+    top: 50px;
+    right:0px;
+    /*background-color: aqua;*/
+}
+
+.startCover{
+    position: absolute;
+    z-index: -1;
+    width: 62%;
+    top: -70px;
+    right: 0px;
+        /*background-color: aqua;*/
+}
+
 .middle{
     padding-left: 20%;
     padding-right: 20%;
@@ -251,8 +292,13 @@ section {
     margin-right: 100px;
 }
 
+.fliesstext{
+    max-width: 63%;
+}
+
+
 .fliesstextBox {
-    width: 500px;
+    width: 400px;
 }
 
 .platzhalterBild {
