@@ -211,7 +211,7 @@ img{
 }
 
 .BildContainer {
-
+    margin-top: -20px;
     width: 400px;
     background-repeat: no-repeat;
 
@@ -220,6 +220,13 @@ img{
 .BildContainer.Uhr{
     margin-top: -150px;
     padding: 50px;
+
+}
+
+
+.linie{
+   margin-top: 40vh;
+   width: 100%;
 
 }
 

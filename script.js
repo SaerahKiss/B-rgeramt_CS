@@ -148,7 +148,7 @@ function clickFinish() {
   console.log(ProbNow);
   console.log(`customProb:${customProb}`);
 
-  ergebnisJS[0].innerText = `${Math.floor(customProb * 100)} %`;
+  ergebnisJS[0].innerText = `${Math.floor(customProb * 100)}%`;
 }
 
 let currentTime = new Date();
@@ -211,7 +211,7 @@ function onClickThird() {
   console.log(askedProbCase);
   //console.log(ProbNow);
   console.log(`customProb:${customProb}`);
-  ergebnisJS[0].innerText = `${Math.floor(customProb * 100)} %`;
+  ergebnisJS[0].innerText = `${Math.floor(customProb * 100)}%`;
 }
 
 let askedProbCase = `anydayProb`;
@@ -230,7 +230,7 @@ function getProbByCaseNumber(caseNumber) {
     `test für calculate Prob${calculateProbNow(data, dataTime, askedProbCase)}`
   );
 
-  ergebnisJS[0].innerText = `${customProb * 100} %`;
+  ergebnisJS[0].innerText = `${customProb * 100}%`;
 }
 
 let ProbNow = `iii`; //da sollte die wahrscheinlichkeit drin gespeichert werden...
