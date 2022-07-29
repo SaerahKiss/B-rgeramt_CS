@@ -78,12 +78,7 @@ h3 {
     font-weight: 500;
     font-family: 'DM Sans', sans-serif;
     margin-top: 0px;
-}
-
-h3.gebot{
-    margin-bottom: 0.3em;
-    /*padding-left: 50px;*/
-
+    margin-bottom: 0;
 }
 
 p {
@@ -93,27 +88,35 @@ p {
     
     font-size: 14pt;
     margin-top: 1em;
+    margin-bottom: 0em;
 }
 
 
 
 .fussNotenTextH1{
-    margin-right: 40px;
+    margin-right: 20px;
+    margin-bottom: 1em;
 }
 
 a{
     color:white;
     text-decoration: none;
     transition: all 250ms ease-in-out;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
 }
+
+
 
 .textLink{
     color: rgb(0, 0, 0);
     text-decoration: underline;
+    font-size: 14pt;
 }
 
 a:hover{
-    color: #999696;
+    color: #969696;
+
 }
 
 section {
@@ -140,7 +143,6 @@ section {
     /* scroll-snap-type: y mandatory; */
 }
 
-
 .question {
     height: 100vh;
     display: flex;
@@ -153,35 +155,56 @@ section {
 .ja,
 .nein,
 .buttonLos {
-    border-width: 2.5px;
     width: 150px;
     /*height: 70px;*/
     margin-top: 37px;
     font-size: 30pt;
+    color: white;
+    background-color: black;
+    text-align: center;
+    /* border-color: black;*/
+    border: 1.7px black;
+    border-style: solid;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    transition: all 250ms ease-in-out;
 }
 
-.datensatzButton{
-    font-size: 14pt;
-    width: 200px;
-    height: 40px;
-    
-}
-
-.link{
-    color: #000000;
-}
 
 .skipButton {
     display: none;
-    background-color: black;
-    color: white;
+    border: 1.7px black;
+    border-style: solid;
+    color: black;
+    background-color: #FEE7E1;
     position: fixed;
     bottom: 50px;
     right: 50px;
     font-size: 14pt;
-    height: 60px;
+    padding-top: 16px;
+    padding-bottom: 18px;   
     width: 120px;
     z-index: 30;
+    text-align: center;
+   
+}
+
+.Conclusion {
+    padding-top: 4px;
+    padding-bottom: 6px;
+    color: white;
+    background-color: black;
+}
+
+.appointment-finder{
+    color: white;
+    padding: 0px;
+    font-size: 20pt;
+    
+}
+
+.timeSwitchButton{
+    height: 10px;
 }
 
 .visible {
@@ -311,6 +334,11 @@ img{
 
 .fliesstextBox {
     width: 400px;
+}
+
+.gebot{
+    margin-bottom: 0.2em;
+
 }
 
 .platzhalterBild {

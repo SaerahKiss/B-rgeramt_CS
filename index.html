@@ -26,16 +26,16 @@
           bist! Skip das Intro um direkt zu den Resultaten zu kommen oder finde heraus wie momentan überhaupt deine Chancen stehen.
           </p>
         <p>Auf die Plätze, fertig...</p>
-        <button class="buttonLos"><a class="link" href="#01">Los!</a></button>
+        <a href="#01" class="buttonLos">Los!</a>
       </section>
-      <button class="skipButton Intro visible"><a href="#04">Skip Intro</a></button>
-      <button class="skipButton Conclusion"><a href="#10">jump to conclusions</a></button>
+      <a href="#04" class="skipButton Intro visible">Skip Intro</a>
+      <a href="#10" class="skipButton Conclusion">jump to conclusions</a>
       
       <section id="01" class="question">
         <h2>Suchst du einen<br />Bürgeramtstermin in Berlin?</h2>
         <div class="iconContainer">
-          <button class="ja"><a class="link" href="#02">ja</a></button>
-          <button class="nein"><a class="link" href="#04">nein</a></button>
+          <a href="#02" class="ja">ja</a>
+          <a href="#04" class="nein">nein</a>
         </div>
         
       </section>
@@ -43,8 +43,8 @@
       <section id="02" class="question">
          <h2>Brauchst du ihn in den<br />nächsten 14 Tagen?</h2>
         <div class="iconContainer">
-          <button class="ja"><a class="link" href="#03">ja</a></button>
-          <button class="nein"><a class="link" href="#04">nein</a></button>
+          <a href="#03" class="ja">ja</a>
+          <a href="#04" class="nein">nein</a>
         </div>
          
       </section>
@@ -52,8 +52,8 @@
       <section id="03" class="question">
           <h2>Brauchst du ihn am besten<br />schon heute?</h2>
           <div class="iconContainer">
-            <button class="ja"><a class="link" href="#04">ja</a></button>
-            <button class="nein"><a class="link" href="#04">nein</a></button>
+            <a href="#04" class="ja">ja</a>
+            <a href="#04" class="nein">nein</a>
           </div>
           
       </section>
@@ -65,9 +65,9 @@
          <div class="iconContainer">
             <p class="fussNotenTextH1">
              *abgeleitet vom Datensatz aus Terminen, die über einen Monat im 2min
-             Takt erfasst wurden. 
+             Takt erfasst wurden.
             </p>
-            <button class="datensatzButton"><a class="link" href="#11">mehr zum Datensatz</a></button>
+            <a href="#11" class="textLink">mehr zum Datensatz</a>
          </div>
         </section>
 
@@ -76,12 +76,13 @@
           Typisch Berlin: Die Bürgerämter sind überlastet. Um überrannte Ämter, lange Schlangen und unendliche Wartezeiten zu
           vermeiden, kann man nur mit einem Termin im Amt vorstellig werden. Diese Termine sind nur online buchbar, rar gesäht,
           schnell vergriffen und oft erst in ein bis zwei Monaten.
-          <br/>
+         
           Braucht man einen Termin, findet man sich mit hunderten anderen Berlinern auf der Buchungs-Webseite der Bürgerämter ein
           und wartet, dass neue Termine eingestellt werden. Als allgemein bekannte Faustregel gilt dabei: um 7:00 Uhr morgens gibt
           es die meisten neuen Termine - also deine besten Chancen einen Termin zu bekommen. Dass das so nicht stimmt und wie du
           mit etwas Strategie deutlich entspannter, ausgeschlafener und schneller an einen Termin kommst, kannst du hier lesen.
-          </p><p class="fliesstext">
+          </p>
+        <p class="fliesstext">
           Der Entwickler und Betreiber der Webseite <a class="textLink" href="https://allaboutberlin.com/">"All About Berlin"</a> Nicolas Bouliane hat es sich zur Aufgabe gemacht, genau zu
           prüfen, <a class="textLink" href="https://nicolasbouliane.com/blog/berlin-buergeramt-experiment">wann das Bürgeramt seine Termine einstellt</a>. Über einen Monat hinweg hat er alle zwei Minuten alle Tage mit
           freien Terminen aufgezeichnet. Hier sind die Ergebnisse:
@@ -112,6 +113,15 @@
           es aus! Tippe dich durch die Legende und finde heraus wie sich die Wahrscheinlichkeit ändert, wenn du die Zeiträume anders
           betrachtest.
         </p>
+        <div class="iconContainer">
+          <button class="timeSwitchButton">30min</button>
+          <button class="timeSwitchButton">30min</button>
+          <button class="timeSwitchButton">30min</button>
+          <button class="timeSwitchButton">30min</button>
+          <button class="timeSwitchButton">30min</button>
+          <button class="timeSwitchButton">30min</button>
+       </div>
+
         <div class="chart-container">
           <canvas id="myBarChart"></canvas>
         </div>
@@ -263,8 +273,8 @@
       <h3 class="gebot">2. sei bereit sehr kurzfristig einen Termin wahrzunehmen</h3>
       <h3 class="gebot">3. wenn es schnell gehen muss, schau zwischen 7:30 und 11:00</h3>
       <h3 class="gebot">4. nicht die Hoffnung verlieren</h3>
-      <h3 class="gebot">5. lass die folgende Webseite für dich arbeiten: <button class="datensatzButton"><a class="link" href="https://allaboutberlin.com/tools/appointment-finder">appointment-finder</a>*</button></h3>
-      <p class="fussNotenTextH1">*Eine Webseite von Nicolas Bouliane, die alle verfügbaren Termine auf einen Blick anzeigt<br/>und dich auf Wunsch benacrichtig, wenn neue Termine frei sind.</p>
+      <h3 class="gebot">5. lass die folgende Webseite für dich arbeiten: <a href="https://allaboutberlin.com/tools/appointment-finder" class="ja appointment-finder">appointment-finder</a>*</h3>
+      <p class="fussNotenTextH1">*Eine Webseite von Nicolas Bouliane, die alle verfügbaren Termine auf einen Blick anzeigt<br/>und dich auf Wunsch benachrichtig, wenn neue Termine frei sind.</p>
     </section>
 
     <section id="11" class="contentSection whiteSection">
