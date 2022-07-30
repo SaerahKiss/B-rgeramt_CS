@@ -73,7 +73,7 @@ function noStickyScrolling() {
 }
 
 function makeStickySections(distanceFromTop) {
-  const positionTopStickySection = visualViewport.height * 12 - 85;
+  const positionTopStickySection = visualViewport.height * 12 - 40; //anstatt 85 (190) wie von Lucas gesetzt (ändert sich je nach screengröße und wird schnell hässlich)
   const positionBottomStickyScrolling = visualViewport.height * 15 - 300;
 
   if (distanceFromTop < positionTopStickySection) {
