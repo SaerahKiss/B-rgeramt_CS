@@ -389,6 +389,11 @@ function drawBarChart(chartData, chartPosition) {
           min: 0,
           max: 1,
           //color: `#ff00ff`,
+          title: {
+            color: "#000000",
+            display: true,
+            text: "Prozent",
+          },
         },
         x: {
           grid: {
@@ -397,6 +402,11 @@ function drawBarChart(chartData, chartPosition) {
             drawOnChartArea: false,
             //drawTicks: false,
             tickLength: 16,
+          },
+          title: {
+            color: "#000000",
+            display: true,
+            text: "Uhrzeit",
           },
         },
       },

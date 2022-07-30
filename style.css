@@ -28,10 +28,11 @@ body {
 }
 
 button {
-    background-color: #FFEAEA;
+    background-color: #46636200;
     font-family: 'DM Sans', sans-serif;
     border-color: black;
     cursor: pointer;
+    border-width: 1.7px;
 }
 
 
@@ -71,6 +72,7 @@ h2 {
     font-weight: 500;
     margin-bottom: 0.3em;
     line-height: 1.15;
+    max-width: 70%;
 }
 
 h3 {
@@ -204,7 +206,10 @@ section {
 }
 
 .timeSwitchButton{
-    height: 10px;
+    height: 35px;
+    width: 70px;
+    margin-right: 60px;
+    
 }
 
 .visible {
@@ -224,6 +229,21 @@ section {
     justify-content: space-between;
     align-items: center;
     /*justify-content: space-between;*/
+}
+
+.leftAlignedContainer {
+    display: flex;
+    flex-direction: row;
+    min-width: 475px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 5vh;
+    margin-bottom: 2.5vh;
+}
+
+.active{
+    color: white;
+    background-color: black;
 }
 
 img{
@@ -319,12 +339,19 @@ img{
 .platzhalterIcon {
     display: flex;
     justify-content: center;
-    margin-top: -10vh;
-    margin-top: -10vh;
+    
+    margin-top: -0vh;
     width: 40%;
     margin-right: 5%;
 }
 
+.middleZwei {
+    padding-left: 20%;
+    padding-right: 20%;
+    /*padding-bottom: 30%;*/
+    margin-top: -22vh;
+    justify-content: center;
+}
 
 
 .fliesstext{
