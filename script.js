@@ -574,8 +574,41 @@ function drawPolarChart(chartPosition) {
   });
 }
 
+const timeSwitchButtonsJS = Array.from(
+  document.getElementsByClassName(`timeSwitchButton`)
+);
+//const jaButtons = Array.from(jaButtonshtml);
+timeSwitchButtonsJS.forEach((switchButton) => {
+  switchButton.addEventListener("click", changeBarChart);
+});
+
+console.log(`buttons: ${timeSwitchButtonsJS}`);
+
+let barChartTimespan = 3;
+
+function changeBarChart(evt) {
+  barChartTimespan = barChartTimespan + 3;
+
+  timeSwitchButtonsJS.forEach((element) => {
+    element.classList.remove(`active`);
+  });
+
+  evt.target.classList.add(`active`);
+  //evt.target.style.visibility = "hidden";
+  console.log(`barChartTimespan: ${barChartTimespan}`);
+} //active class zum geklickten button, remove vom button davor ---- barChartTimespan je nach button mögl?
+
+//number für zeitspannen (6 entspricht 1h)
+//einheit für barChartTimespan je nach Index der timeSwitchButtonsJS? eg: 0 = 12h, 1=6h, 2=3h, usw.
+
+/* Problem: die d3 funktion wird nur 1 mal am anfang geladen, beim späteren ändern von let z.B. durch 
+klicken auf einen Button wird das bar chart nicht mehr geändert bzw.
+gibt es enen weg, mit dem ich im späteren verlauf das bar chart neu laden kann? 
+dafür muss die function drawCharts neu geladen werden
+gibt es einen weg NUR das bar chart neu zu laden nicht alle anderen charts?*/
+
 function groupDataByHours(acc, item, idx) {
-  const isNewGroup = idx % 3 === 0;
+  const isNewGroup = idx % barChartTimespan === 0;
   const values = Object.values(acc);
   const itemValue = parseFloat(item.anydayProb);
   const lastHourKey = parseInt(Object.keys(acc)[values.length - 1], 10) || 0;
@@ -659,10 +692,11 @@ d3.csv("Data1.csv").then((data) => {
   console.log(
     `test anydayProb: ${calculateProbNow(data, dataTime, `anydayProb`)}`
   );
-  //console.log(median); //kommt von Gustav - was ist das? ein Durchschnitt?
+  //console.log(median);
   customProb = calculateProbNow(data, dataTime, askedProbCase);
   console.log(customProb); // hier muss askedProbCase rein, so funktioniert der wert!! muss nur noch eingebunden werden
 });
+
 // d3.csv("Data1.csv").then(
 //   drawCharts,
 //   calculateProbNow(askedProbCase, dataTime) //????
