@@ -21,8 +21,11 @@ const buttonSkipIntroJS = document.getElementsByClassName(`Intro`);
 const buttonSkipConclusionJS = document.getElementsByClassName(`Conclusion`);
 
 //positionen für die buttons
-const positionTopIntro = visualViewport.height * 4;
-const positionTopConclusion = visualViewport.height * 19;
+const positionTopStart = visualViewport.height - visualViewport.height * 0.2;
+const positionTopIntro =
+  visualViewport.height * 5 + visualViewport.height * 0.2;
+const positionTopConclusion =
+  visualViewport.height * 20 + visualViewport.height * 0.2;
 
 //alles was beim scrolling passieren soll
 rootJS[0].addEventListener("scroll", (event) => {
@@ -41,7 +44,9 @@ rootJS[0].addEventListener("scroll", (event) => {
 });
 
 function changeButtons(distanceFromTop) {
-  if (distanceFromTop < positionTopIntro) {
+  if (distanceFromTop < positionTopStart) {
+    buttonSkipIntroJS[0].classList.remove(`visible`);
+  } else if (distanceFromTop < positionTopIntro) {
     buttonSkipIntroJS[0].classList.add(`visible`);
   } else if (distanceFromTop >= positionTopIntro) {
     buttonSkipIntroJS[0].classList.remove(`visible`);
@@ -73,8 +78,10 @@ function noStickyScrolling() {
 }
 
 function makeStickySections(distanceFromTop) {
-  const positionTopStickySection = visualViewport.height * 12 - 40; //anstatt 85 (190) wie von Lucas gesetzt (ändert sich je nach screengröße und wird schnell hässlich)
-  const positionBottomStickyScrolling = visualViewport.height * 15 - 300;
+  const positionTopStickySection =
+    visualViewport.height * 13 + visualViewport.height * 0.2 - 40; //anstatt 85 (190) wie von Lucas gesetzt (ändert sich je nach screengröße und wird schnell hässlich)
+  const positionBottomStickyScrolling =
+    visualViewport.height * 16 + visualViewport.height * 0.2 - 300;
 
   if (distanceFromTop < positionTopStickySection) {
     noStickyScrolling();
@@ -87,13 +94,13 @@ function makeStickySections(distanceFromTop) {
   }
 
   //fist grafik
-  if (distanceFromTop <= visualViewport.height * 12) {
+  if (distanceFromTop <= visualViewport.height * 14) {
     stickyH3[0].innerText = `insgesamt: 100 Suchende:`;
   }
-  if (distanceFromTop > visualViewport.height * 12) {
+  if (distanceFromTop > visualViewport.height * 14) {
     stickyH3[0].innerText = `bei Besuch der Webseite\num 10:10 Uhr:`;
   }
-  if (distanceFromTop > visualViewport.height * 14) {
+  if (distanceFromTop > visualViewport.height * 15) {
     stickyH3[0].innerText = `bei Besuch der Webseite\nzu egal welcher Zeit:`;
   }
 }
@@ -132,7 +139,9 @@ function clickFinish() {
   switch (caseNumbers) {
     case 0:
       h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine zu unbestimmter Zeit finden wirst.*`;
+
       break;
+
     case 1:
       h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine zu unbestimmter Zeit finden wirst.*`;
       break;
@@ -165,9 +174,15 @@ let hours = currentTime.getHours();
 
 let minutes = currentTime.getMinutes();
 let roundedMinutes = Math.floor(minutes * 0.1) * 10;
+
 let dataTime = `${hours}:${roundedMinutes || "00"}:00`;
 //console.log(minutes);
 //console.log(roundedMinutes);
+
+if (minutes < 10) {
+  minutes = "0" + minutes;
+}
+
 console.log(dataTime);
 
 // jaButtons[0].addEventListener("click", runfunctionsOnClick); //funktioniert nicht
@@ -203,6 +218,7 @@ function onClickThird() {
   switch (caseNumbers) {
     case 0:
       h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine zu unbestimmter Zeit finden wirst.*`;
+
       break;
     case 1:
       h2resultJS[0].innerText = `Das ist die Wahrscheinlichkeit, mit der du jetzt (${hours}:${minutes}) freie Termine zu unbestimmter Zeit finden wirst.*`;
