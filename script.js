@@ -148,7 +148,15 @@ function clickFinish() {
   console.log(ProbNow);
   console.log(`customProb:${customProb}`);
 
-  ergebnisJS[0].innerText = `${Math.floor(customProb * 100)}%`;
+  if (askedProbCase === `dateWithin14daysProb`) {
+    ergebnisJS[0].innerText = `${Math.floor(twoWeeksProb * 100)}%`;
+  } else if (askedProbCase === `dateByTomorrowProb`) {
+    ergebnisJS[0].innerText = `${Math.floor(tomorrowProb * 100)}%`;
+  } else if (askedProbCase === `anydayProb`) {
+    ergebnisJS[0].innerText = `${Math.floor(customProb * 100)}%`;
+  }
+
+  //ergebnisJS[0].innerText = `${Math.floor(customProb * 100)}%`;
 }
 
 let currentTime = new Date();
@@ -211,7 +219,16 @@ function onClickThird() {
   console.log(askedProbCase);
   //console.log(ProbNow);
   console.log(`customProb:${customProb}`);
-  ergebnisJS[0].innerText = `${Math.floor(customProb * 100)}%`;
+
+  if (askedProbCase === `dateWithin14daysProb`) {
+    ergebnisJS[0].innerText = `${Math.floor(twoWeeksProb * 100)}%`;
+  } else if (askedProbCase === `dateByTomorrowProb`) {
+    ergebnisJS[0].innerText = `${Math.floor(tomorrowProb * 100)}%`;
+  } else if (askedProbCase === `anydayProb`) {
+    ergebnisJS[0].innerText = `${Math.floor(customProb * 100)}%`;
+  }
+
+  //ergebnisJS[0].innerText = `${Math.floor(customProb * 100)}%`;
 }
 
 let askedProbCase = `anydayProb`;
@@ -230,7 +247,7 @@ function getProbByCaseNumber(caseNumber) {
     `test für calculate Prob${calculateProbNow(data, dataTime, askedProbCase)}`
   );
 
-  ergebnisJS[0].innerText = `${customProb * 100}%`;
+  //ergebnisJS[0].innerText = `${customProb * 100}%`;
 }
 
 let ProbNow = `iii`; //da sollte die wahrscheinlichkeit drin gespeichert werden...
@@ -594,9 +611,9 @@ function changeBarChart(evt) {
   });
 
   evt.target.classList.add(`active`);
-  //evt.target.style.visibility = "hidden";
+
   console.log(`barChartTimespan: ${barChartTimespan}`);
-} //active class zum geklickten button, remove vom button davor ---- barChartTimespan je nach button mögl?
+} //---- barChartTimespan je nach button mögl?
 
 //number für zeitspannen (6 entspricht 1h)
 //einheit für barChartTimespan je nach Index der timeSwitchButtonsJS? eg: 0 = 12h, 1=6h, 2=3h, usw.
@@ -652,6 +669,10 @@ function drawCharts(dataList) {
   console.log(Object.values(barChartData));
 }
 
+let tomorrowProb = 0.11;
+let twoWeeksProb = 0.22;
+let egalProb = 0.33;
+
 d3.csv("Data1.csv").then((data) => {
   // Diese Funktion dauert ein wenig. Deshalb hast du außerhalb dieser Funktion keinen Zugriff auf die Daten.
   // Erst wenn das Auslesen aus der CSV abgeschloßen ist, kannst du damit was machen.
@@ -674,7 +695,8 @@ d3.csv("Data1.csv").then((data) => {
 
   // ist das gleiche wie
   // const median = d3.median(data, d => Number(d.anyday))
-
+  tomorrowProb = calculateProbNow(data, dataTime, `dateByTomorrowProb`);
+  console.log(`tomorrowProb: ${tomorrowProb}`);
   console.log(
     `test dateByTomorrowProb: ${calculateProbNow(
       data,
@@ -682,6 +704,9 @@ d3.csv("Data1.csv").then((data) => {
       `dateByTomorrowProb`
     )}`
   );
+
+  twoWeeksProb = calculateProbNow(data, dataTime, `dateWithin14daysProb`);
+  console.log(`twoWeeksProb: ${twoWeeksProb}`);
   console.log(
     `test dateWithin14daysProb: ${calculateProbNow(
       data,
