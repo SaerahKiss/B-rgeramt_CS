@@ -581,13 +581,13 @@ function drawPolarChart(chartPosition) {
           label: "My First Dataset",
           data: [21, 5, 1, 1, 7, 66],
           backgroundColor: [
-            "#466362",
-            "#8E89BF",
+            "#AC3931",
+            "#111D4A",
 
             "#000000",
             "#000000",
 
-            "#DF928E",
+            "#273C2C",
             "#000000",
           ],
         },
