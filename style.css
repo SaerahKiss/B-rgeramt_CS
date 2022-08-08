@@ -146,7 +146,7 @@ section {
 .contentSection{
     padding-left: 100px;
     padding-right: 100px;
-    padding-top: 50px;
+    padding-top: 10vh;
     padding-bottom: 50px;
     width: (100vw -- 100px);
 }
@@ -239,8 +239,13 @@ section {
     flex-direction: row;
     min-width: 475px;
     justify-content: space-between;
-    align-items: center;
+    
+    
     /*justify-content: space-between;*/
+}
+
+.iconContainer.centered{
+    align-items: center;
 }
 
 .leftAlignedContainer {
@@ -274,9 +279,9 @@ img{
 }
 
 .BildContainer.Uhr{
-    margin-top: -150px;
-    padding: 50px;
-
+    margin-top: -200px;
+    
+    margin-right: 100px;
 }
 
 
@@ -289,10 +294,14 @@ img{
 .cover{
     position: absolute;
     z-index: -1;
-    width: 80%;
-    top: 50px;
+    width: 75vw;
+    top: 11vh;
     right:0px;
     /*background-color: aqua;*/
+}
+
+.Tuer{
+    right: 12.5vw;
 }
 
 .startCover{
@@ -304,17 +313,92 @@ img{
         /*background-color: aqua;*/
 }
 
+.unten{
+    top: 105vh;
+}
+
 .middle{
     padding-left: 20%;
     padding-right: 20%;
     /*padding-bottom: 30%;*/
-    
+    margin-top: -5vh;
     justify-content: center;
+    align-self: center;
 }
 
-.polar {
-    margin-top: -230px;
-    margin-right: -25%;
+
+
+#myPolarChart{
+    margin-left: -10vw;
+    margin-top: -0vh;
+    width: 70vw;
+}
+
+.polar{
+    justify-content:flex-start;
+    max-height: 80vh;
+    height: 80vh;
+}
+
+.fliesstextBox.mini{
+    width: 50vw;
+
+}
+
+.farbcontainer{
+    display:flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.text{
+    margin-top: 0;
+    font-size: 10pt;
+}
+
+.color{
+    font-family: 'DM Sans', sans-serif;
+    height: 45px;
+    
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #ffffFF;
+    margin-right: 15px;
+    display:flex;
+    align-items: center;
+    /*justify-content: center;*/
+}
+
+.color.rot{
+    background-color: #C4352B;
+    width: 40px;
+}
+
+.color.blau{
+    background-color: #102575;
+    width: 80px;
+}
+
+.color.gruen{
+    background-color: #107564;
+    width: 160px;
+}
+
+.color.braun{
+    background-color: #803333;
+    width: 280px;
+}
+
+.color.gelb {
+    background-color: #C4B12B;
+    width: 600px;
+}
+
+.color.schwarz{
+    background-color: #000000;
+    width: 600px;
+    height: 90px;
 }
 
 .stickyScroll{
@@ -332,7 +416,7 @@ img{
 
 .stickyBoxIt{
     position: fixed;
-    top: 50px;
+    top: 10vh;
     /* left: 40px; */
     z-index: 20;
 }
@@ -377,7 +461,7 @@ img{
 
 
 .fliesstextBox {
-    width: 400px;
+    width: 50vw;
 }
 
 .gebot{
@@ -408,12 +492,12 @@ img{
 
 .chart-container {
     width: 90%;
-    max-height: 50vh;
+    /*max-height: 50vh;*/
    /* height: 80vh; */
 }
 
 .chart-container.smaller{
-    margin-top: -40px;
+    margin-top: 0px;
 }
 
 /*

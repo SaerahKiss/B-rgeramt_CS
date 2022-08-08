@@ -481,15 +481,15 @@ function drawLineChartTwoLines(
         {
           label: "2 Tage",
           data: chartData1,
-          backgroundColor: ["#000000"],
-          borderColor: ["#000000"],
+          backgroundColor: ["#00000000"],
+          borderColor: ["#102575"],
           borderWidth: 3,
         },
         {
           label: "14 Tage",
           data: chartData3,
           backgroundColor: ["rgba(255,255,255,0)"],
-          borderColor: ["#DD7F7F"],
+          borderColor: ["#C4352B"],
           borderWidth: 3,
           fill: true,
         },
@@ -581,13 +581,13 @@ function drawPolarChart(chartPosition) {
           label: "My First Dataset",
           data: [21, 5, 1, 1, 7, 66],
           backgroundColor: [
-            "#AC3931",
-            "#111D4A",
+            "#C4352B",
+            "#102575",
 
-            "#000000",
-            "#000000",
+            "#107564",
+            "#803333",
 
-            "#273C2C",
+            "#C4B12B",
             "#000000",
           ],
         },
