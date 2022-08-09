@@ -25,7 +25,7 @@ const positionTopStart = visualViewport.height - visualViewport.height * 0.2;
 const positionTopIntro =
   visualViewport.height * 5 + visualViewport.height * 0.2;
 const positionTopConclusion =
-  visualViewport.height * 20 + visualViewport.height * 0.2;
+  visualViewport.height * 21 + visualViewport.height * 0.2;
 
 //alles was beim scrolling passieren soll
 rootJS[0].addEventListener("scroll", (event) => {
