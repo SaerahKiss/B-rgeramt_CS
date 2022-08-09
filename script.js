@@ -21,11 +21,13 @@ const buttonSkipIntroJS = document.getElementsByClassName(`Intro`);
 const buttonSkipConclusionJS = document.getElementsByClassName(`Conclusion`);
 
 //positionen für die buttons
-const positionTopStart = visualViewport.height - visualViewport.height * 0.2;
-const positionTopIntro =
-  visualViewport.height * 5 + visualViewport.height * 0.2;
-const positionTopConclusion =
-  visualViewport.height * 21 + visualViewport.height * 0.2;
+//const screenHeight = visualViewport.height;
+const screenHeight = window.innerHeight;
+console.log(`viewportHeight: ${visualViewport.height}`);
+console.log(`windowHeight: ${window.innerHeight}`);
+const positionTopStart = screenHeight - screenHeight * 0.2;
+const positionTopIntro = screenHeight * 6 + screenHeight * 0.2;
+const positionTopConclusion = screenHeight * 21 + screenHeight * 0.2;
 
 //alles was beim scrolling passieren soll
 rootJS[0].addEventListener("scroll", (event) => {
@@ -58,7 +60,7 @@ function changeButtons(distanceFromTop) {
   }
 }
 
-//console.log(`viweport-Height:${visualViewport.height * 4}`);
+//console.log(`viweport-Height:${screenHeight * 4}`);
 
 //const stickyHeader = document.getElementsByClassName(`h2ToBesticky`);
 //const stickySub = document.getElementsByClassName(`pToBesticky`);
@@ -78,10 +80,9 @@ function noStickyScrolling() {
 }
 
 function makeStickySections(distanceFromTop) {
-  const positionTopStickySection =
-    visualViewport.height * 13 + visualViewport.height * 0.2 - 40; //anstatt 85 (190) wie von Lucas gesetzt (ändert sich je nach screengröße und wird schnell hässlich)
+  const positionTopStickySection = screenHeight * 13 + screenHeight * 0.2 - 40; //anstatt 85 (190) wie von Lucas gesetzt (ändert sich je nach screengröße und wird schnell hässlich)
   const positionBottomStickyScrolling =
-    visualViewport.height * 16 + visualViewport.height * 0.2 - 300;
+    screenHeight * 16 + screenHeight * 0.2 - 300;
 
   if (distanceFromTop < positionTopStickySection) {
     noStickyScrolling();
@@ -94,13 +95,13 @@ function makeStickySections(distanceFromTop) {
   }
 
   //fist grafik
-  if (distanceFromTop <= visualViewport.height * 14) {
+  if (distanceFromTop <= screenHeight * 14) {
     stickyH3[0].innerText = `insgesamt: 100 Suchende:`;
   }
-  if (distanceFromTop > visualViewport.height * 14) {
+  if (distanceFromTop > screenHeight * 14) {
     stickyH3[0].innerText = `bei Besuch der Webseite\num 10:10 Uhr:`;
   }
-  if (distanceFromTop > visualViewport.height * 15) {
+  if (distanceFromTop > screenHeight * 15) {
     stickyH3[0].innerText = `bei Besuch der Webseite\nzu egal welcher Zeit:`;
   }
 }
@@ -568,12 +569,12 @@ function drawPolarChart(chartPosition) {
     type: "polarArea",
     data: {
       labels: [
-        "heute",
-        "in 3 Tagen",
-        "in 7 Tagen",
-        "in 14 Tagen",
-        "in 30 Tagen",
-        "im nächsten Monat",
+        "% heute",
+        "% in 3 Tagen",
+        "% in 7 Tagen",
+        "% in 14 Tagen",
+        "% in 30 Tagen",
+        "% im nächsten Monat",
       ],
       datasets: [
         {

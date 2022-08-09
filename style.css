@@ -329,7 +329,7 @@ img{
 
 
 #myPolarChart{
-    margin-left: -10vw;
+    margin-left: -2vw;
     margin-top: -0vh;
     width: 70vw;
 }
@@ -359,8 +359,8 @@ img{
 
 .color{
     font-family: 'DM Sans', sans-serif;
-    height: 45px;
-    
+    height: 22px;
+    font-size: 10pt;
     padding-left: 5px;
     padding-right: 5px;
     color: #ffffFF;
@@ -398,7 +398,11 @@ img{
 .color.schwarz{
     background-color: #000000;
     width: 600px;
-    height: 90px;
+    height: 44px;
+}
+
+.invisible{
+    display:none;
 }
 
 .stickyScroll{
@@ -407,11 +411,18 @@ img{
     justify-content: space-between;
 }
 
+/*
+.sticky{
+    position:sticky;
+}*/
+
 .stickyBox {
     pointer-events: none;
     width: 50%;
     position: absolute;
     /* margin-top: 50px; */
+  
+    
 }
 
 .stickyBoxIt{
@@ -427,7 +438,7 @@ img{
 
 .stickyText{
     position: fixed;
-    top: 0px;
+    /*top: 0px;
     /* left: 40px; */
     z-index: 20;
     
@@ -461,7 +472,7 @@ img{
 
 
 .fliesstextBox {
-    width: 50vw;
+    width: 40vw;
 }
 
 .gebot{
