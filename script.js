@@ -1,5 +1,3 @@
-console.log(`hello`);
-
 const h2resultJS = document.getElementsByClassName(`resultH2`);
 const ergebnisJS = document.getElementsByClassName(`prozentzahl`);
 
@@ -15,56 +13,46 @@ neinButtons.forEach((neinButton) => {
   neinButton.addEventListener("click", clickFinish);
 });
 
-const rootJS = document.getElementsByClassName(`root`);
+const rootJS = document.getElementById(`scroller`);
 
-const buttonSkipIntroJS = document.getElementsByClassName(`Intro`);
-const buttonSkipConclusionJS = document.getElementsByClassName(`Conclusion`);
-
-//positionen für die buttons
-//const screenHeight = visualViewport.height;
-const screenHeight = window.innerHeight;
-console.log(`viewportHeight: ${visualViewport.height}`);
-console.log(`windowHeight: ${window.innerHeight}`);
-const positionTopStart = screenHeight - screenHeight * 0.2;
-const positionTopIntro = screenHeight * 6 + screenHeight * 0.2;
-const positionTopConclusion = screenHeight * 21 + screenHeight * 0.2;
-
-//alles was beim scrolling passieren soll
-rootJS[0].addEventListener("scroll", (event) => {
-  let distanceFromTop = rootJS[0].scrollTop;
-  changeButtons(distanceFromTop);
-  makeStickySections(distanceFromTop);
-  //return distanceFromTop;
-  //am besten mit case switch
-
-  //if distanceFromTop < positionTopIntro {classList.add visibility zu skip button;
-
-  //if distanceFromTop > positionTopIntro {classList.remove visibility von skip button;
-  //classList.add visibility zu conclusions button}
-
-  //if distanceFromTop > positionTopConclusion {classList.remove visibility von conclusion button;}
-});
+// Utility to get a function that adds the top of an element relative to top of the viewport to the already scrolled distance
+const getTopGetter = (distanceFromTop) => (el) =>
+  el.getBoundingClientRect().top + distanceFromTop;
 
 function changeButtons(distanceFromTop) {
-  if (distanceFromTop < positionTopStart) {
-    buttonSkipIntroJS[0].classList.remove(`visible`);
-  } else if (distanceFromTop < positionTopIntro) {
-    buttonSkipIntroJS[0].classList.add(`visible`);
-  } else if (distanceFromTop >= positionTopIntro) {
-    buttonSkipIntroJS[0].classList.remove(`visible`);
-    buttonSkipConclusionJS[0].classList.add(`visible`);
+  const getTop = getTopGetter(distanceFromTop); // getTopGetter ist eine Factory-Funktion die uns eine neue Funktion returnt, welche die Höhe eines Element + distanceFromTop returnt.
+
+  // Save button elements into variables
+  const buttonSkipIntroJS = document.querySelector(`.Intro`);
+  const buttonSkipConclusionJS = document.querySelector(`.Conclusion`);
+
+  // Save section elements into variables
+  const startSectionEl = document.getElementById("0");
+  const introSectionEl = document.querySelector(".first");
+  const conclusionSectionEl = document.getElementById("10");
+
+  // Save the top position of each section into variables
+  const topOfStart = getTop(startSectionEl);
+  const topOfIntro = getTop(introSectionEl);
+  const topOfConclusion = getTop(conclusionSectionEl);
+
+  // Check if skip-intro button should be shown
+  if (distanceFromTop > topOfStart && distanceFromTop < topOfIntro) {
+    buttonSkipIntroJS.classList.add(`visible`);
+  } else {
+    buttonSkipIntroJS.classList.remove(`visible`);
   }
 
-  if (distanceFromTop >= positionTopConclusion) {
-    buttonSkipConclusionJS[0].classList.remove(`visible`);
+  // Check if skip-to-conclusion button should be shown
+  if (distanceFromTop > topOfIntro && distanceFromTop < topOfConclusion) {
+    buttonSkipConclusionJS.classList.add(`visible`);
+  } else {
+    buttonSkipConclusionJS.classList.remove(`visible`);
   }
 }
 
-//console.log(`viweport-Height:${screenHeight * 4}`);
-
 //const stickyHeader = document.getElementsByClassName(`h2ToBesticky`);
 //const stickySub = document.getElementsByClassName(`pToBesticky`);
-const stickyH3 = document.getElementsByClassName(`stickyH3`);
 const stickyBox = document.getElementsByClassName(`stickyBox`);
 
 function startStickyScrolling() {
@@ -79,30 +67,55 @@ function noStickyScrolling() {
   stickyBox[0].classList.remove(`stickyBoxIt`);
 }
 
+const getElBB = (el) => el.getBoundingClientRect();
+
 function makeStickySections(distanceFromTop) {
-  const positionTopStickySection = screenHeight * 13 + screenHeight * 0.2 - 40; //anstatt 85 (190) wie von Lucas gesetzt (ändert sich je nach screengröße und wird schnell hässlich)
-  const positionBottomStickyScrolling =
-    screenHeight * 16 + screenHeight * 0.2 - 300;
+  const getTop = getTopGetter(distanceFromTop);
 
-  if (distanceFromTop < positionTopStickySection) {
-    noStickyScrolling();
-  } else if (distanceFromTop >= positionTopStickySection) {
+  // Save section elements into variables
+  const slide1 = document.getElementById("61");
+  const slide2 = document.getElementById("62");
+  const slide3 = document.getElementById("63");
+  const lastSlide = document.getElementById("64");
+
+  // Save the scroll positions at which to start and end the sticky behavior
+  const heightOfTextContent = slide1
+    .querySelector("div:first-of-type")
+    .getBoundingClientRect().height;
+  const stickyPositionStart = getTop(slide1);
+  const stickyPositionEnd = getTop(lastSlide) - heightOfTextContent;
+
+  // If within the start and end position -> Sticky. Else not.
+  if (
+    distanceFromTop >= stickyPositionStart &&
+    distanceFromTop <= stickyPositionEnd
+  ) {
     startStickyScrolling();
-  }
-
-  if (distanceFromTop > positionBottomStickyScrolling) {
+  } else {
     noStickyScrolling();
   }
 
-  //fist grafik
-  if (distanceFromTop <= screenHeight * 14) {
-    stickyH3[0].innerText = `insgesamt: 100 Suchende:`;
+  // Save a reference to the sticky H3 in a variable
+  const stickyH3 = document.querySelector(`.stickyH3`);
+
+  // Save an offset to change the content before
+  // it is perfectly aligned to the top of the section
+  const changeH3ContentOffset = 200;
+
+  // If the scrolled distance is smaller than the top of slide 2 (- the offset)
+  if (distanceFromTop <= getTop(slide2) - changeH3ContentOffset) {
+    stickyH3.innerText = `insgesamt: 100 Suchende:`;
   }
-  if (distanceFromTop > screenHeight * 14) {
-    stickyH3[0].innerText = `bei Besuch der Webseite\num 10:10 Uhr:`;
+  // If the scrolled distance is between the top of slide 2 AND the top of slide 3 (- the offset)
+  else if (
+    distanceFromTop > getTop(slide2) - changeH3ContentOffset &&
+    distanceFromTop <= getTop(slide3) - changeH3ContentOffset
+  ) {
+    stickyH3.innerText = `bei Besuch der Webseite\num 10:10 Uhr:`;
   }
-  if (distanceFromTop > screenHeight * 15) {
-    stickyH3[0].innerText = `bei Besuch der Webseite\nzu egal welcher Zeit:`;
+  // If the scrolled distance is bigger than the top of slide 3 (- the offset)
+  else if (distanceFromTop > getTop(slide3) - changeH3ContentOffset) {
+    stickyH3.innerText = `bei Besuch der Webseite\nzu egal welcher Zeit:`;
   }
 }
 
@@ -154,9 +167,9 @@ function clickFinish() {
       break;
   }
   getProbByCaseNumber(caseNumbers);
-  console.log(askedProbCase);
-  console.log(ProbNow);
-  console.log(`customProb:${customProb}`);
+  // console.log(askedProbCase);
+  // console.log(ProbNow);
+  // console.log(`customProb:${customProb}`);
 
   if (askedProbCase === `dateWithin14daysProb`) {
     ergebnisJS[0].innerText = `${Math.floor(twoWeeksProb * 100)}%`;
@@ -183,8 +196,6 @@ let dataTime = `${hours}:${roundedMinutes || "00"}:00`;
 if (minutes < 10) {
   minutes = "0" + minutes;
 }
-
-console.log(dataTime);
 
 // jaButtons[0].addEventListener("click", runfunctionsOnClick); //funktioniert nicht
 
@@ -233,9 +244,9 @@ function onClickThird() {
   }
 
   getProbByCaseNumber(caseNumbers);
-  console.log(askedProbCase);
+  // console.log(askedProbCase);
   //console.log(ProbNow);
-  console.log(`customProb:${customProb}`);
+  // console.log(`customProb:${customProb}`);
 
   if (askedProbCase === `dateWithin14daysProb`) {
     ergebnisJS[0].innerText = `${Math.floor(twoWeeksProb * 100)}%`;
@@ -260,9 +271,9 @@ function getProbByCaseNumber(caseNumber) {
     case 3:
       return (askedProbCase = `dateByTomorrowProb`);
   }
-  console.log(
-    `test für calculate Prob${calculateProbNow(data, dataTime, askedProbCase)}`
-  );
+  // console.log(
+  //   `test für calculate Prob${calculateProbNow(data, dataTime, askedProbCase)}`
+  // );
 
   //ergebnisJS[0].innerText = `${customProb * 100}%`;
 }
@@ -396,7 +407,7 @@ function drawLineChart(chartData, chartPosition) {
 function drawBarChart(chartData, chartPosition) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
 
-  const myChart = new Chart(ctx, {
+  return new Chart(ctx, {
     type: "bar",
     data: {
       datasets: [
@@ -608,30 +619,6 @@ function drawPolarChart(chartPosition) {
   });
 }
 
-const timeSwitchButtonsJS = Array.from(
-  document.getElementsByClassName(`timeSwitchButton`)
-);
-//const jaButtons = Array.from(jaButtonshtml);
-timeSwitchButtonsJS.forEach((switchButton) => {
-  switchButton.addEventListener("click", changeBarChart);
-});
-
-console.log(`buttons: ${timeSwitchButtonsJS}`);
-
-let barChartTimespan = 3;
-
-function changeBarChart(evt) {
-  barChartTimespan = barChartTimespan + 3;
-
-  timeSwitchButtonsJS.forEach((element) => {
-    element.classList.remove(`active`);
-  });
-
-  evt.target.classList.add(`active`);
-
-  console.log(`barChartTimespan: ${barChartTimespan}`);
-} //---- barChartTimespan je nach button mögl?
-
 //number für zeitspannen (6 entspricht 1h)
 //einheit für barChartTimespan je nach Index der timeSwitchButtonsJS? eg: 0 = 12h, 1=6h, 2=3h, usw.
 
@@ -641,7 +628,7 @@ gibt es enen weg, mit dem ich im späteren verlauf das bar chart neu laden kann?
 dafür muss die function drawCharts neu geladen werden
 gibt es einen weg NUR das bar chart neu zu laden nicht alle anderen charts?*/
 
-function groupDataByHours(acc, item, idx) {
+function groupDataByHours(acc, item, idx, barChartTimespan) {
   const isNewGroup = idx % barChartTimespan === 0;
   const values = Object.values(acc);
   const itemValue = parseFloat(item.anydayProb);
@@ -664,6 +651,7 @@ function groupDataByHours(acc, item, idx) {
 
 //hier kommt code von chart js zum styling ("dataList" is Array und "dataItem" ist das einzelne obj)
 function drawCharts(dataList) {
+  let barChartTimespan = 3;
   const chartData = dataList.map(dataItemToChartItem);
   drawLineChart(chartData, "myChart");
 
@@ -677,13 +665,45 @@ function drawCharts(dataList) {
     "mySecondChart"
   );
 
-  const barChartData = dataList.reduce(groupDataByHours, {});
-  drawBarChart(Object.values(barChartData), "myBarChart");
+  const getDataByTimeReducer = (acc, item, idx) => {
+    return groupDataByHours(acc, item, idx, barChartTimespan);
+  };
+
+  const barChartData = dataList.reduce(getDataByTimeReducer, {});
+  const barChart = drawBarChart(Object.values(barChartData), "myBarChart");
+
+  const timeSwitchButtonsJS = Array.from(
+    document.getElementsByClassName(`timeSwitchButton`)
+  );
+
+  //const jaButtons = Array.from(jaButtonshtml);
+  timeSwitchButtonsJS.forEach((switchButton) => {
+    switchButton.addEventListener("click", changeBarChart);
+  });
+
+  // console.log(`buttons: ${timeSwitchButtonsJS}`);
+
+  function changeBarChart(evt) {
+    barChartTimespan = parseInt(evt.target.dataset.timespan, 10);
+
+    const newData = Object.values(dataList.reduce(getDataByTimeReducer, {}));
+    barChart.data.datasets[0].data = newData;
+    barChart.data.labels = newData.map((i) => i.x);
+    barChart.update();
+
+    timeSwitchButtonsJS.forEach((element) => {
+      element.classList.remove(`active`);
+    });
+
+    evt.target.classList.add(`active`);
+
+    // console.log(`barChartTimespan: ${barChartTimespan}`);
+  } //---- barChartTimespan je nach button mögl?
 
   //const polarChartData = [21, 5, 1, 1, 7, 66];
   drawPolarChart("myPolarChart");
 
-  console.log(Object.values(barChartData));
+  // console.log(Object.values(barChartData));
 }
 
 let tomorrowProb = 0.11;
@@ -696,7 +716,7 @@ d3.csv("Data1.csv").then((data) => {
 
   // >>> schau in die Console. Da siehst du die Daten die du bekommst.
   // Daten sind ein Array von Objekten
-  console.log(data);
+  // console.log(data);
 
   drawCharts(data);
   // hier function aufrufen um charts zu malen zb.
@@ -713,30 +733,30 @@ d3.csv("Data1.csv").then((data) => {
   // ist das gleiche wie
   // const median = d3.median(data, d => Number(d.anyday))
   tomorrowProb = calculateProbNow(data, dataTime, `dateByTomorrowProb`);
-  console.log(`tomorrowProb: ${tomorrowProb}`);
-  console.log(
-    `test dateByTomorrowProb: ${calculateProbNow(
-      data,
-      dataTime,
-      `dateByTomorrowProb`
-    )}`
-  );
+  // console.log(`tomorrowProb: ${tomorrowProb}`);
+  // console.log(
+  //   `test dateByTomorrowProb: ${calculateProbNow(
+  //     data,
+  //     dataTime,
+  //     `dateByTomorrowProb`
+  //   )}`
+  // );
 
   twoWeeksProb = calculateProbNow(data, dataTime, `dateWithin14daysProb`);
-  console.log(`twoWeeksProb: ${twoWeeksProb}`);
-  console.log(
-    `test dateWithin14daysProb: ${calculateProbNow(
-      data,
-      dataTime,
-      `dateWithin14daysProb`
-    )}`
-  );
-  console.log(
-    `test anydayProb: ${calculateProbNow(data, dataTime, `anydayProb`)}`
-  );
+  // console.log(`twoWeeksProb: ${twoWeeksProb}`);
+  // console.log(
+  //   `test dateWithin14daysProb: ${calculateProbNow(
+  //     data,
+  //     dataTime,
+  //     `dateWithin14daysProb`
+  //   )}`
+  // );
+  // console.log(
+  //   `test anydayProb: ${calculateProbNow(data, dataTime, `anydayProb`)}`
+  // );
   //console.log(median);
   customProb = calculateProbNow(data, dataTime, askedProbCase);
-  console.log(customProb); // hier muss askedProbCase rein, so funktioniert der wert!! muss nur noch eingebunden werden
+  // console.log(customProb); // hier muss askedProbCase rein, so funktioniert der wert!! muss nur noch eingebunden werden
 });
 
 // d3.csv("Data1.csv").then(
@@ -754,3 +774,13 @@ fetch("Buergeramt_appointment_experiment_sarah_2.csv", {
   .then((response) => response.text())
   .then((data) => console.log(data));
   */
+
+//alles was beim scrolling passieren soll
+function updateFrame() {
+  let distanceFromTop = rootJS.scrollTop;
+  changeButtons(distanceFromTop);
+  makeStickySections(distanceFromTop);
+
+  window.requestAnimationFrame(updateFrame);
+}
+updateFrame();
