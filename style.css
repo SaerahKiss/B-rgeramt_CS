@@ -1,5 +1,5 @@
 :root {
-  --textMaxWidth: 700px;
+  --textMaxWidth: 800px;
   --titlesMaxWidth: 900px;
 }
 
@@ -65,8 +65,8 @@ h1 {
 .prozentzahl {
   font-size: 120pt;
   font-weight: 600;
-  margin-bottom: -6vh;
-  margin-top: -0vh;
+  margin-bottom: -2rem;
+  margin-top: 0;
 }
 
 .contentSection.start {
@@ -102,7 +102,6 @@ p {
   font-family: "DM Sans", sans-serif;
   line-height: 1.3;
   color: black;
-
   font-size: 14pt;
   margin-top: 1em;
   margin-bottom: 0em;
@@ -308,7 +307,7 @@ img {
 }
 
 .unten {
-  top: 0vh;
+  top: -100vh;
 }
 
 .middle {
@@ -469,6 +468,10 @@ img {
   max-width: var(--textMaxWidth, 700px);
 }
 
+.smol{
+  max-width: 650px;
+}
+
 .hyphenated {
   -webkit-hyphens: auto;
   -webkit-hyphenate-limit-before: 3;
@@ -530,7 +533,7 @@ img {
 }
 
 .chart-container.smaller {
-  margin-top: 0px;
+  margin-top: -10px;
 }
 
 /*
