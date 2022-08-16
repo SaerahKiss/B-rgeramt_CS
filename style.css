@@ -293,6 +293,7 @@ img {
 
 .Tuer {
   right: 12.5vw;
+  z-index: -2;
 }
 
 .startCover {
@@ -702,4 +703,130 @@ img {
       height: 100vh;
     }
 
+}
+
+@media screen and (max-width:450px) {
+  h1 {
+    margin-top: 5vh;
+    font-size: 40pt;
+   }
+  
+  h2 {
+   font-size: 30pt;
+  }
+  
+  h3 {
+    font-size: 20pt;
+  }
+  
+  p {
+    font-size: 12pt;
+  }
+  
+  .fussNotenTextH1 {
+    margin-right: 5px;
+  }
+  
+  .textLink {
+    font-size: 12pt;
+  }
+
+  .ja,
+  .nein,
+  .buttonLos {
+    width: 100px;
+    margin-top: 37px;
+    font-size: 20pt;
+  }
+  
+  .skipButton {  
+    bottom: 10px;
+    right: 10px;
+    font-size: 12pt;
+    padding-top: 11px;
+    padding-bottom: 13px;
+    width: 100px;
+  }
+  
+  .Conclusion {
+    padding-top: 2px;
+    padding-bottom: 3px;
+  }
+  
+  .appointment-finder {
+    font-size: 12pt;
+  }
+  
+  .timeSwitchButton {
+    height: 30px;
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  .iconContainer {
+    flex-direction: column;
+    min-width: 200px;
+  }
+
+  .contentSection {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .prozentzahl {
+    font-size: 80pt;
+    margin-bottom: 0rem;
+  }
+
+  .cover {
+    width: 130vw; 
+  }
+
+  .BildContainer.Uhr {
+    width:70vw;
+  }
+
+ .startCover {
+  width: 110%;
+  top: 25vh; 
+  }
+
+  
+.stickyBox {
+  top: 50px;
+  left: 20px;
+}
+  
+.stickyScroll .BildContainer img {
+  max-width: 50vw;
+  margin-top: 50vh;
+}
+
+.gebot{
+  font-size: 17pt;
+}
+
+.farbcontainer {
+  
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
+
+.text {
+  margin-top: 0;
+  font-size: 7pt;
+}
+
+.color {
+  height: 20px;
+  font-size: 7pt;
+  margin-right: 7px;
+}
+
+.spacebetween {
+
+  max-height: 90vh;
+}
 }
