@@ -1,6 +1,6 @@
 const h2resultJS = document.getElementsByClassName(`resultH2`);
 const ergebnisJS = document.getElementsByClassName(`prozentzahl`);
-
+const viewW = visualViewport.width;
 //dann die buttons zugänglich machen
 const jaButtons = Array.from(document.getElementsByClassName(`ja`));
 //const jaButtons = Array.from(jaButtonshtml);
@@ -318,6 +318,16 @@ function thirdDataItemToChartItem(dataItem) {
   };
 }
 
+function getChartRatio(width) {
+  if (width > 821) {
+    return 3;
+  } else if (width < 821) {
+    return 2;
+  }
+}
+
+const chartRatio = getChartRatio(visualViewport.width);
+
 function drawLineChart(chartData, chartPosition) {
   const ctx = document.getElementById(chartPosition).getContext("2d");
 
@@ -371,7 +381,7 @@ function drawLineChart(chartData, chartPosition) {
           },
         },*/
       },
-      aspectRatio: 3,
+      aspectRatio: chartRatio,
       scales: {
         y: {
           min: 0,
@@ -427,7 +437,7 @@ function drawBarChart(chartData, chartPosition) {
           text: "",
         },
       },
-      aspectRatio: 3,
+      aspectRatio: chartRatio,
       scales: {
         y: {
           //offset: false,
@@ -540,7 +550,7 @@ function drawLineChartTwoLines(
           },
         },*/
       },
-      aspectRatio: 3,
+      aspectRatio: chartRatio,
       scales: {
         y: {
           min: 0,

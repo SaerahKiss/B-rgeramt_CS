@@ -285,7 +285,8 @@ img {
   position: absolute;
   z-index: -1;
   width: 75vw;
-  top: 11vh;
+  /*top: 11vh;*/
+  bottom: 5vh;
   right: 0px;
   /*background-color: aqua;*/
 }
@@ -314,7 +315,8 @@ img {
   padding-left: 20%;
   padding-right: 20%;
   /*padding-bottom: 30%;*/
-  margin-top: -5vh;
+  /*margin-top: -5vh;*/
+  margin-top: -70px;
   justify-content: center;
   align-self: center;
 }
@@ -461,7 +463,8 @@ img {
   padding-left: 20%;
   padding-right: 20%;
   /*padding-bottom: 30%;*/
-  margin-top: -22vh;
+  /*margin-top: -22vh;*/
+  margin-top: -100px;
   justify-content: center;
 }
 
@@ -603,4 +606,62 @@ img {
 
 #scroller > section.snapGroup {
   scroll-snap-stop: normal;
+}
+
+
+@media screen and (max-width:821px) {
+
+  /* Zusätzliche Regeln für kleinere Monitore  */
+  .contentSection {
+      padding-right: 50px;
+      padding-left: 50px;
+    }
+
+ .startCover {
+    width: 90%;
+    top: 21vh;
+  }
+
+ .iconContainer.centered {
+   align-items: flex-start;
+   flex-direction: column;
+ }
+
+ .column{
+  flex-direction: column;
+ }
+
+.BildContainer.Uhr{
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+ }
+/*
+ .contentSection.question.iconContainer {
+   flex-direction: row;
+ }
+
+ .iconContainer {
+  
+   flex-direction: column;
+ 
+ }*/
+
+.cover {
+  width: 110vw;
+}
+
+.chart-container {
+  width: 100%;
+
+}
+
+}
+
+@media screen and (max-width:450px) {
+
+  /* Zusätzliche Regeln noch kleinere Monitore  */
+  body {
+    
+  }
 }
