@@ -261,8 +261,8 @@ img {
 
 .iconContainer .BildContainer img,
 .stickyScroll .BildContainer img {
-  max-width: 400px;
-  margin-top: -40px;
+  max-width: 350px;
+  margin-top: 0px;
 }
 
 .iconContainer .BildContainer.large img,
@@ -608,10 +608,10 @@ img {
   scroll-snap-stop: normal;
 }
 
-
+/* Zusätzliche Regeln für kleinere Monitore  */
 @media screen and (max-width:821px) {
 
-  /* Zusätzliche Regeln für kleinere Monitore  */
+
   .contentSection {
       padding-right: 50px;
       padding-left: 50px;
@@ -628,40 +628,78 @@ img {
  }
 
  .column{
-  flex-direction: column;
- }
+    flex-direction: column;
+  }
 
-.BildContainer.Uhr{
-  margin-top: 40px;
-  margin-right: auto;
-  margin-left: auto;
- }
-/*
- .contentSection.question.iconContainer {
-   flex-direction: row;
- }
+  .BildContainer.Uhr{
+    margin-top: 0vh;
+    margin-right: auto;
+    margin-left: auto;
 
- .iconContainer {
-  
-   flex-direction: column;
- 
- }*/
+  }
 
-.cover {
-  width: 110vw;
-}
+  .cover {
+    width: 110vw;
+  }
 
-.chart-container {
-  width: 100%;
+  .chart-container {
+    width: 100%;
 
-}
+  }
 
-}
+  .middle {
 
-@media screen and (max-width:450px) {
+    /*padding-bottom: 30%;*/
+    /*margin-top: -5vh;*/
+    margin-top: -20px;
+  }
 
-  /* Zusätzliche Regeln noch kleinere Monitore  */
-  body {
+  .middleZwei {
+    margin-top: -30px;
     
   }
+
+  .platzhalterIcon {
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .stickyScroll {
+    justify-content: flex-start;
+    grid-template-columns: none;
+    display:flex;
+  }
+/*
+  .stickyScroll.BildContainer{
+    margin-top: 100px;
+  }*/
+
+  .stickyScroll .BildContainer img {
+      max-width: 40vw;
+      margin-top: 42vh;
+  }
+
+  .stickyBoxIt {
+    background-color: #ffffff;
+  }
+
+  .stickyScroll .BildContainer.large img {
+    margin-top: 0vh;
+  }
+
+  .green .iconContainer{
+    flex-direction: column;
+  }
+
+   #myPolarChart {
+     margin-left: 0vw;
+     width: 100vw;
+     margin-top: -70vh;
+   }
+
+    .spacebetween {
+      height: 100vh;
+    }
+
 }
